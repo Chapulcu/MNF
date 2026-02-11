@@ -19,6 +19,14 @@ Mini futbol sahası yönetimi, kadro yerleşimi ve maç istatistikleri uygulamas
 npm install
 ```
 
+## Hızlı Başlangıç
+```
+git clone https://github.com/Chapulcu/MNF.git
+cd MNF
+npm install
+npm run dev
+```
+
 ## Çalıştırma
 ```
 npm run dev
