@@ -1,0 +1,489 @@
+[debug] [2026-02-06T10:58:47.245Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.245Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.247Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.247Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.247Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.247Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.247Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.248Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.248Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.248Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.265Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.265Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.265Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.265Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.265Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.266Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.266Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.266Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.266Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.266Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.266Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.266Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.247Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.247Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.247Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.247Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.247Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.247Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.248Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.248Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.265Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.265Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.265Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.265Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.265Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.266Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:47.266Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:47.266Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.266Z] Checked if tokens are valid: false, expires at: 1770358828719
+[debug] [2026-02-06T10:58:47.266Z] > refreshing access token with scopes: []
+[debug] [2026-02-06T10:58:47.266Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-06T10:58:47.266Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.412Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.428Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.412Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.462Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:47.428Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.466Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:47.463Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.463Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.479Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:47.480Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.480Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.495Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:47.468Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.468Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.483Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:47.484Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-06T10:58:47.484Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-06T10:58:47.499Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:48.325Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.326Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.326Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.328Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.328Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.328Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.328Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.332Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.332Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.334Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.334Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.326Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.329Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.329Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.329Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.329Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.332Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.333Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.334Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.334Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.337Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.337Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.337Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.337Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.337Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.337Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.338Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.338Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.338Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.338Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.338Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.338Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.339Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.900Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.900Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.900Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.900Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.900Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.900Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.902Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.902Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.902Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.902Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.902Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.903Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.903Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.904Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.904Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.904Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.904Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.904Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.904Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.905Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.905Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.905Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.905Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:48.905Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.905Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.906Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.914Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:48.914Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:48.915Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.915Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-06T10:58:48.916Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-06T10:58:49.296Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.296Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.296Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.296Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.298Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.298Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.414Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.414Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.419Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.419Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.420Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.420Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.423Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.423Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.425Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.425Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.426Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.426Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.426Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.426Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.427Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.427Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.434Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.434Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.435Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:49.435Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:49.435Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:49.435Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:49.435Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:49.819Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.819Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.820Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.820Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.832Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-06T10:58:49.832Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-06T10:58:49.900Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.900Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.902Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.902Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.909Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.909Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.913Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.913Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.944Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-06T10:58:49.944Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.945Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:49.945Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:49.945Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:49.945Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:49.945Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:49.953Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.953Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.956Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-06T10:58:49.956Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.957Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.957Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.957Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:49.957Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:49.957Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:49.957Z] Checked if tokens are valid: true, expires at: 1770379126480
+[debug] [2026-02-06T10:58:49.957Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:49.964Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-06T10:58:49.964Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-06T10:58:49.965Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:49.965Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:49.965Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:49.965Z] Checked if tokens are valid: true, expires at: 1770379126484
+[debug] [2026-02-06T10:58:49.965Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-06T10:58:50.105Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:50.105Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:50.106Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:50.106Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:50.245Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:50.245Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:50.245Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:50.246Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:50.611Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:50.611Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:50.612Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:50.612Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-06T10:58:50.617Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-06T10:58:50.617Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-06T10:58:50.618Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T10:58:50.618Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:40.889Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:40.891Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:40.891Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:40.891Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:40.891Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.892Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.892Z] > refreshing access token with scopes: []
+[debug] [2026-02-07T03:28:40.892Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-07T03:28:40.892Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:40.908Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.908Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.908Z] > refreshing access token with scopes: []
+[debug] [2026-02-07T03:28:40.909Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-07T03:28:40.909Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:40.909Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:40.909Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:40.909Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.909Z] Checked if tokens are valid: false, expires at: 1770379126484
+[debug] [2026-02-07T03:28:40.909Z] > refreshing access token with scopes: []
+[debug] [2026-02-07T03:28:40.909Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-07T03:28:40.909Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:41.092Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-07T03:28:41.092Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:41.108Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-07T03:28:41.109Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-07T03:28:41.109Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:41.126Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-07T03:28:41.127Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-07T03:28:41.127Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-07T03:28:41.137Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-07T03:28:41.439Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-07T03:28:41.439Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-07T03:28:41.442Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.442Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.442Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.442Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.445Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.445Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.445Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.445Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.446Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.447Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-07T03:28:41.447Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.454Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-07T03:28:41.455Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-07T03:28:41.455Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.455Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.455Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.455Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.456Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.456Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.456Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.456Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.456Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.457Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-07T03:28:41.457Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.890Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-07T03:28:41.891Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-07T03:28:41.891Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.891Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.891Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.891Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.892Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.892Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.892Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.892Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-07T03:28:41.892Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:41.893Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-07T03:28:41.893Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-07T03:28:42.445Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-07T03:28:42.445Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-07T03:28:42.510Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-07T03:28:42.510Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:42.522Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-07T03:28:42.522Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:42.527Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-07T03:28:42.527Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:42.527Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:42.527Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:42.527Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:42.527Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:42.527Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-07T03:28:42.535Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-07T03:28:42.535Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:43.299Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-07T03:28:43.299Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-07T03:28:43.299Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-07T03:28:43.299Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-07T03:28:43.431Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-07T03:28:43.431Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-07T03:28:43.432Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:43.432Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:43.466Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-07T03:28:43.466Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:43.468Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-07T03:28:43.468Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:43.473Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-07T03:28:43.473Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:43.473Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:43.473Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-07T03:28:43.473Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:43.473Z] Checked if tokens are valid: true, expires at: 1770438520127
+[debug] [2026-02-07T03:28:43.473Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-07T03:28:43.474Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-07T03:28:43.474Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:43.474Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-07T03:28:43.474Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-07T03:28:44.143Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-07T03:28:44.143Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-07T03:28:44.143Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T03:28:44.143Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:35.902Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:35.904Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:35.904Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:35.904Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:35.904Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:35.905Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:35.905Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:35.905Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-11T05:50:35.922Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-11T05:50:35.922Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-11T05:50:36.668Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-11T05:50:36.668Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-11T05:50:36.671Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.671Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.671Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.672Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.676Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.676Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.676Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.676Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.676Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.676Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.676Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.676Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.677Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.677Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.677Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-11T05:50:36.677Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.686Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-11T05:50:36.686Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-11T05:50:36.686Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.686Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.686Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.687Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.688Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.688Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.688Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.688Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.688Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.688Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.688Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.688Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.689Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.689Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.689Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-11T05:50:36.689Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.696Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-11T05:50:36.696Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-11T05:50:36.696Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.696Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.696Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.696Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.697Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.697Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.697Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.697Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:36.697Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.697Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [none]
+[debug] [2026-02-11T05:50:36.698Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com  x-goog-user-project=portfolio-admin-2025-takhan
+[debug] [2026-02-11T05:50:37.578Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-11T05:50:37.578Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-11T05:50:37.579Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-11T05:50:37.579Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-11T05:50:37.579Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com 403
+[debug] [2026-02-11T05:50:37.579Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseio.com [omitted]
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-11T05:50:37.709Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.710Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-11T05:50:37.710Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.710Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-11T05:50:37.710Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.711Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-11T05:50:37.711Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.712Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-11T05:50:37.713Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.714Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-11T05:50:37.714Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.715Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:37.715Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:37.715Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:37.715Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:37.715Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-11T05:50:37.716Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-11T05:50:37.716Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-admin-2025-takhan/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-11T05:50:37.716Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:37.716Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:37.716Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:37.716Z] Checked if tokens are valid: true, expires at: 1770792291892
+[debug] [2026-02-11T05:50:37.717Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo [none]
+[debug] [2026-02-11T05:50:38.366Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-11T05:50:38.366Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-11T05:50:38.367Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:38.367Z] > authorizing via signed-in user (akhantalip@gmail.com)
+[debug] [2026-02-11T05:50:38.381Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo 200
+[debug] [2026-02-11T05:50:38.382Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-admin-2025-takhan/billingInfo {"name":"projects/portfolio-admin-2025-takhan/billingInfo","projectId":"portfolio-admin-2025-takhan","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-11T05:50:38.382Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-11T05:50:38.382Z] > authorizing via signed-in user (akhantalip@gmail.com)
