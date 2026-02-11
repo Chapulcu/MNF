@@ -22,6 +22,7 @@ export interface Goal {
   minute: number | null;
   team: 'A' | 'B';
   isConfirmed: boolean;
+  youtubeUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
 }

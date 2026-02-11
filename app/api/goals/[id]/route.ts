@@ -8,11 +8,12 @@ export async function PUT(
   try {
     const { id } = await params; // goal id
     const body = await request.json();
-    const { isConfirmed, minute } = body;
+    const { isConfirmed, minute, youtubeUrl } = body;
 
     const goal = updateGoal(id, {
       isConfirmed: isConfirmed ?? undefined,
       minute: minute ?? undefined,
+      youtubeUrl: youtubeUrl ?? undefined,
     });
 
     return NextResponse.json(goal);

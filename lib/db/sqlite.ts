@@ -22,6 +22,9 @@ try {
 try {
   db.exec(`ALTER TABLE pitch_state ADD COLUMN is_active INTEGER NOT NULL DEFAULT 0`);
 } catch {}
+try {
+  db.exec(`ALTER TABLE goals ADD COLUMN youtube_url TEXT`);
+} catch {}
 
 // Initialize tables
 db.exec(`
@@ -85,6 +88,7 @@ db.exec(`
     minute INTEGER,
     team TEXT NOT NULL,
     is_confirmed INTEGER NOT NULL DEFAULT 0,
+    youtube_url TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now')),
     FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE,
@@ -155,6 +159,7 @@ export interface Goal {
   minute: number | null;
   team: 'A' | 'B';
   isConfirmed: boolean;
+  youtubeUrl: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -617,6 +622,7 @@ export function getGoalsByMatch(matchId: string): Goal[] {
     minute: number | null;
     team: string;
     is_confirmed: number;
+    youtube_url: string | null;
     created_at: string;
     updated_at: string;
   }>;
@@ -627,6 +633,7 @@ export function getGoalsByMatch(matchId: string): Goal[] {
     minute: row.minute,
     team: row.team as 'A' | 'B',
     isConfirmed: Boolean(row.is_confirmed),
+    youtubeUrl: row.youtube_url || null,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   }));
@@ -637,8 +644,8 @@ export function createGoal(goal: Omit<Goal, 'id' | 'createdAt' | 'updatedAt'>): 
   const now = new Date().toISOString();
 
   const stmt = db.prepare(`
-    INSERT INTO goals (id, match_id, player_id, minute, team, is_confirmed, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO goals (id, match_id, player_id, minute, team, is_confirmed, youtube_url, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   stmt.run(
@@ -648,6 +655,7 @@ export function createGoal(goal: Omit<Goal, 'id' | 'createdAt' | 'updatedAt'>): 
     goal.minute || null,
     goal.team,
     goal.isConfirmed ? 1 : 0,
+    goal.youtubeUrl || null,
     now,
     now
   );
@@ -660,6 +668,7 @@ export function createGoal(goal: Omit<Goal, 'id' | 'createdAt' | 'updatedAt'>): 
     minute: number | null;
     team: string;
     is_confirmed: number;
+    youtube_url: string | null;
     created_at: string;
     updated_at: string;
   };
@@ -671,6 +680,7 @@ export function createGoal(goal: Omit<Goal, 'id' | 'createdAt' | 'updatedAt'>): 
     minute: row.minute,
     team: row.team as 'A' | 'B',
     isConfirmed: Boolean(row.is_confirmed),
+    youtubeUrl: row.youtube_url || null,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   };
@@ -688,6 +698,10 @@ export function updateGoal(id: string, updates: Partial<Omit<Goal, 'id' | 'creat
     fields.push('is_confirmed = ?');
     values.push(updates.isConfirmed ? 1 : 0);
   }
+  if (updates.youtubeUrl !== undefined) {
+    fields.push('youtube_url = ?');
+    values.push(updates.youtubeUrl);
+  }
 
   fields.push('updated_at = ?');
   values.push(new Date().toISOString());
@@ -704,6 +718,7 @@ export function updateGoal(id: string, updates: Partial<Omit<Goal, 'id' | 'creat
     minute: number | null;
     team: string;
     is_confirmed: number;
+    youtube_url: string | null;
     created_at: string;
     updated_at: string;
   };
@@ -715,6 +730,7 @@ export function updateGoal(id: string, updates: Partial<Omit<Goal, 'id' | 'creat
     minute: row.minute,
     team: row.team as 'A' | 'B',
     isConfirmed: Boolean(row.is_confirmed),
+    youtubeUrl: row.youtube_url || null,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   };

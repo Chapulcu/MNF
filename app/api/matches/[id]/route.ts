@@ -84,7 +84,7 @@ export async function POST(
   try {
     const { id } = await params; // match id
     const body = await request.json();
-    const { playerId, minute, team, isConfirmed } = body;
+    const { playerId, minute, team, isConfirmed, youtubeUrl } = body;
 
     if (!playerId || !team) {
       return NextResponse.json(
@@ -99,6 +99,7 @@ export async function POST(
       minute: minute || null,
       team,
       isConfirmed: isConfirmed ?? false,
+      youtubeUrl: youtubeUrl || null,
     });
 
     return NextResponse.json(goal, { status: 201 });

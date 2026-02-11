@@ -82,19 +82,45 @@ export default function Home() {
     return playerPool.filter((p) => !activePlayerIds.includes(p.id));
   }, [playerPool, activePlayers]);
 
+  const parseScheduledAt = (value: string | null): Date | null => {
+    if (!value) return null;
+    if (/Z|[+-]\d{2}:\d{2}$/.test(value)) {
+      return new Date(value);
+    }
+    const match = value.match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (match) {
+      const [, y, m, d, hh = '0', mm = '0', ss = '0'] = match;
+      return new Date(
+        Number(y),
+        Number(m) - 1,
+        Number(d),
+        Number(hh),
+        Number(mm),
+        Number(ss)
+      );
+    }
+    return new Date(value);
+  };
+
   const handleSlotClick = (slotId: string) => {
+    if (!isAuthenticated) {
+      alert('Slot seçmek için giriş yapmalısınız.');
+      return;
+    }
+
     const now = new Date();
-    const scheduledDate = scheduledAt ? new Date(scheduledAt) : null;
+    const scheduledDate = parseScheduledAt(scheduledAt);
+    const hasSchedule = !!scheduledDate;
     const isScheduleReady = !scheduledDate || now >= scheduledDate;
-    const canJoin = isActive && isScheduleReady;
+    const canJoin = hasSchedule ? isScheduleReady : isActive;
 
     if (!isAdmin && !canJoin) {
-      if (!isActive) {
-        alert('Saha şu an aktif değil. Admin tarafından aktif edildikten sonra katılabilirsiniz.');
+      if (hasSchedule && !isScheduleReady) {
+        alert('Maç zamanı henüz gelmedi. Lütfen belirtilen saatte tekrar deneyin.');
         return;
       }
-      if (!isScheduleReady) {
-        alert('Maç zamanı henüz gelmedi. Lütfen belirtilen saatte tekrar deneyin.');
+      if (!hasSchedule && !isActive) {
+        alert('Saha şu an aktif değil. Admin tarafından aktif edildikten sonra katılabilirsiniz.');
         return;
       }
     }
@@ -185,6 +211,11 @@ export default function Home() {
   };
 
   const handlePlayerMove = (fromSlotId: string, toSlotId: string) => {
+    if (!isAdmin) {
+      alert('Slot değiştirmek için önce mevcut slotunuzu boşaltın.');
+      return;
+    }
+
     const player = activePlayers.get(fromSlotId);
     if (!player) return;
 
@@ -313,7 +344,7 @@ export default function Home() {
               matchType={matchType}
               activePlayers={activePlayers}
               onSlotClick={handleSlotClick}
-              onPlayerMove={handlePlayerMove}
+              onPlayerMove={isAdmin ? handlePlayerMove : undefined}
               teamAFormation={teamAFormation}
               teamBFormation={teamBFormation}
               orientation={pitchOrientation}
@@ -584,7 +615,7 @@ export default function Home() {
               matchType={matchType}
               activePlayers={activePlayers}
               onSlotClick={handleSlotClick}
-              onPlayerMove={handlePlayerMove}
+              onPlayerMove={isAdmin ? handlePlayerMove : undefined}
               teamAFormation={teamAFormation}
               teamBFormation={teamBFormation}
               orientation={pitchOrientation}

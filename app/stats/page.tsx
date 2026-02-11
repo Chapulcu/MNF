@@ -6,7 +6,7 @@ import { addGoal, createMatch, deleteGoal, deleteMatch, getAllMatches, getStats,
 import { getAllPlayers } from '@/lib/api/players';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { Calendar, Trophy, Target, TrendingUp, Users, Circle, ArrowLeft, Sparkles, Plus, Pencil, Trash2, CheckCircle, XCircle } from 'lucide-react';
+import { Calendar, Trophy, Target, TrendingUp, Users, Circle, ArrowLeft, Sparkles, Plus, Pencil, Trash2, CheckCircle, XCircle, ExternalLink } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -58,6 +58,7 @@ export default function StatsPage() {
   const [goalPlayerId, setGoalPlayerId] = useState('');
   const [goalTeam, setGoalTeam] = useState<'A' | 'B'>('A');
   const [goalMinute, setGoalMinute] = useState('');
+  const [goalYoutubeUrl, setGoalYoutubeUrl] = useState('');
   const [goalConfirmed, setGoalConfirmed] = useState(false);
 
   useEffect(() => {
@@ -162,6 +163,11 @@ export default function StatsPage() {
     return minutes * 60 + seconds;
   };
 
+  const isValidYoutubeUrl = (value: string) => {
+    if (!value) return true;
+    return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//i.test(value);
+  };
+
 
   const openNewMatchModal = () => {
     setEditingMatch(null);
@@ -245,6 +251,7 @@ export default function StatsPage() {
     setGoalPlayerId('');
     setGoalTeam('A');
     setGoalMinute('');
+    setGoalYoutubeUrl('');
     setGoalConfirmed(false);
     setShowGoalModal(true);
   };
@@ -255,6 +262,7 @@ export default function StatsPage() {
     setGoalPlayerId(goal.playerId);
     setGoalTeam(goal.team);
     setGoalMinute(formatSeconds(goal.minute ?? null));
+    setGoalYoutubeUrl(goal.youtubeUrl || '');
     setGoalConfirmed(goal.isConfirmed);
     setShowGoalModal(true);
   };
@@ -269,10 +277,15 @@ export default function StatsPage() {
         toast('Süre formatı geçersiz. Örn: 0:38 veya 75', 'error');
         return;
       }
+      if (!isValidYoutubeUrl(goalYoutubeUrl.trim())) {
+        toast('Geçerli bir YouTube linki girin.', 'error');
+        return;
+      }
       if (editingGoal) {
         await updateGoal(editingGoal.id, {
           minute: parsedSeconds,
           isConfirmed: isAdmin ? goalConfirmed : undefined,
+          youtubeUrl: goalYoutubeUrl.trim() || null,
         });
         toast('Gol güncellendi.', 'success');
       } else {
@@ -292,6 +305,7 @@ export default function StatsPage() {
           team: goalTeam,
           minute: parsedSeconds,
           isConfirmed: isAdmin ? goalConfirmed : false,
+          youtubeUrl: goalYoutubeUrl.trim() || null,
         });
         toast('Gol eklendi.', 'success');
       }
@@ -412,7 +426,8 @@ export default function StatsPage() {
         match.goals.forEach((g) => {
           const time = formatSeconds(g.minute);
           const confirmed = g.isConfirmed ? 'onaylı' : 'beklemede';
-          lines.push(`  [${g.team}] ${g.playerName} - ${time || '-'} (${confirmed})`);
+          const yt = g.youtubeUrl ? ` | YouTube: ${g.youtubeUrl}` : '';
+          lines.push(`  [${g.team}] ${g.playerName} - ${time || '-'} (${confirmed})${yt}`);
         });
       }
       lines.push('');
@@ -897,6 +912,15 @@ export default function StatsPage() {
               placeholder="Örn: 0:38, 12:05 veya 1:02:15"
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">YouTube Linki (opsiyonel)</label>
+            <Input
+              type="url"
+              value={goalYoutubeUrl}
+              onChange={(e) => setGoalYoutubeUrl(e.target.value)}
+              placeholder="https://www.youtube.com/watch?v=..."
+            />
+          </div>
           {isAdmin && (
             <label className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200">
               <input
@@ -1080,6 +1104,17 @@ function MatchCard({
                           {goal.minute !== null && (
                             <span className="text-slate-500 dark:text-slate-300">{formatSeconds(goal.minute)}</span>
                           )}
+                          {goal.youtubeUrl && (
+                            <a
+                              href={goal.youtubeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-red-600 hover:underline"
+                            >
+                              YouTube
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          )}
                           {isAdmin && (
                             <div className="flex items-center gap-1">
                               <button
@@ -1139,6 +1174,17 @@ function MatchCard({
                         <div className="flex items-center gap-2">
                           {goal.minute !== null && (
                             <span className="text-slate-500 dark:text-slate-300">{formatSeconds(goal.minute)}</span>
+                          )}
+                          {goal.youtubeUrl && (
+                            <a
+                              href={goal.youtubeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-red-600 hover:underline"
+                            >
+                              YouTube
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
                           )}
                           {isAdmin && (
                             <div className="flex items-center gap-1">
