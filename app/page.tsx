@@ -212,8 +212,8 @@ export default function Home() {
   };
 
   const handlePlayerMove = (fromSlotId: string, toSlotId: string) => {
-    if (!isAdmin) {
-      alert('Slot değiştirmek için önce mevcut slotunuzu boşaltın.');
+    if (!isAuthenticated) {
+      alert('Slot değiştirmek için giriş yapmalısınız.');
       return;
     }
 
@@ -230,10 +230,9 @@ export default function Home() {
     // Check if target slot has a player
     const targetPlayer = activePlayers.get(toSlotId);
     if (targetPlayer) {
-      // Check permissions for removing target player
-      const isTargetOwnPlayer = isAuthenticated && currentPlayer?.id === targetPlayer.id;
-      if (!isAdmin && !isTargetOwnPlayer) {
-        alert('Hedef slottaki oyuncuyu sadece kendi kaldırabilirsiniz.');
+      // Only admins can swap occupied slots
+      if (!isAdmin) {
+        alert('Dolu bir slota sadece admin taşıma yapabilir.');
         return;
       }
     }
@@ -345,7 +344,7 @@ export default function Home() {
               matchType={matchType}
               activePlayers={activePlayers}
               onSlotClick={handleSlotClick}
-              onPlayerMove={isAdmin ? handlePlayerMove : undefined}
+              onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
               teamAFormation={teamAFormation}
               teamBFormation={teamBFormation}
               orientation={pitchOrientation}
@@ -616,7 +615,7 @@ export default function Home() {
               matchType={matchType}
               activePlayers={activePlayers}
               onSlotClick={handleSlotClick}
-              onPlayerMove={isAdmin ? handlePlayerMove : undefined}
+              onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
               teamAFormation={teamAFormation}
               teamBFormation={teamBFormation}
               orientation={pitchOrientation}

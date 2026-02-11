@@ -306,7 +306,7 @@ export function FootballPitch({
                 team={team}
                 onClick={() => onSlotClick(slotId)}
                 isEmpty={!player}
-                isDraggable={!!player}
+                isDraggable={!!player && !!onPlayerMove}
                 isDragOver={isDragOver}
                 zoomLevel={playerZoom}
                 onDragStart={() => handleDragStart(slotId)}
