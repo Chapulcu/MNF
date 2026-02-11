@@ -23,6 +23,9 @@ try {
   db.exec(`ALTER TABLE pitch_state ADD COLUMN is_active INTEGER NOT NULL DEFAULT 0`);
 } catch {}
 try {
+  db.exec(`ALTER TABLE pitch_state ADD COLUMN player_positions TEXT NOT NULL DEFAULT '{}'`);
+} catch {}
+try {
   db.exec(`ALTER TABLE goals ADD COLUMN youtube_url TEXT`);
 } catch {}
 
@@ -55,6 +58,7 @@ db.exec(`
     team_b_formation TEXT,
     scheduled_at TEXT,
     is_active INTEGER NOT NULL DEFAULT 0,
+    player_positions TEXT NOT NULL DEFAULT '{}',
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
 
@@ -134,6 +138,7 @@ export interface PitchState {
   teamBFormation: string | null;
   scheduledAt: Date | null;
   isActive: boolean;
+  playerPositions: Record<string, { x: number; y: number }>;
   updatedAt: Date;
 }
 
@@ -315,6 +320,7 @@ export function getPitchState(): PitchState {
       activePlayers: [],
       teamAFormation: null,
       teamBFormation: null,
+      playerPositions: {},
       updatedAt: new Date(),
     };
   }
@@ -326,6 +332,7 @@ export function getPitchState(): PitchState {
     teamBFormation: row.team_b_formation || null,
     scheduledAt: row.scheduled_at ? new Date(row.scheduled_at) : null,
     isActive: Boolean(row.is_active),
+    playerPositions: row.player_positions ? JSON.parse(row.player_positions) : {},
     updatedAt: new Date(row.updated_at),
   };
 }
@@ -359,6 +366,10 @@ export function updatePitchState(state: Omit<Partial<PitchState>, 'updatedAt'>):
     updates.push('is_active = ?');
     values.push(state.isActive ? 1 : 0);
   }
+  if (state.playerPositions !== undefined) {
+    updates.push('player_positions = ?');
+    values.push(JSON.stringify(state.playerPositions));
+  }
 
   updates.push('updated_at = ?');
   values.push(new Date().toISOString());
@@ -374,6 +385,7 @@ export function clearPitchState(): void {
     SET active_players = '[]',
         team_a_formation = NULL,
         team_b_formation = NULL,
+        player_positions = '{}',
         updated_at = ?
     WHERE id = ?
   `);

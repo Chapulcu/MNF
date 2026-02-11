@@ -35,7 +35,7 @@ export default function StatsPage() {
   const [playerStats, setPlayerStats] = useState<PlayerStats[]>([]);
   const [matchStats, setMatchStats] = useState<MatchStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | '5v5' | '6v6' | '7v7'>('all');
+  const [filter, setFilter] = useState<'all' | '5v5' | '6v6' | '7v7' | '8v8' | '9v9' | '10v10' | '11v11'>('all');
   const [players, setPlayers] = useState<Player[]>([]);
   const [showPendingOnly, setShowPendingOnly] = useState(false);
   const [selectedPendingGoals, setSelectedPendingGoals] = useState<Set<string>>(new Set());
@@ -43,7 +43,7 @@ export default function StatsPage() {
   const [showMatchModal, setShowMatchModal] = useState(false);
   const [editingMatch, setEditingMatch] = useState<MatchWithGoals | null>(null);
   const [matchDate, setMatchDate] = useState('');
-  const [matchType, setMatchType] = useState<'5v5' | '6v6' | '7v7'>('5v5');
+  const [matchType, setMatchType] = useState<'5v5' | '6v6' | '7v7' | '8v8' | '9v9' | '10v10' | '11v11'>('5v5');
   const [teamAScore, setTeamAScore] = useState(0);
   const [teamBScore, setTeamBScore] = useState(0);
   const [matchNotes, setMatchNotes] = useState('');
@@ -186,7 +186,7 @@ export default function StatsPage() {
   const openEditMatchModal = (match: MatchWithGoals) => {
     setEditingMatch(match);
     setMatchDate(toLocalDatetimeInput(new Date(match.date)));
-    setMatchType(match.matchType as '5v5' | '6v6' | '7v7');
+    setMatchType(match.matchType as '5v5' | '6v6' | '7v7' | '8v8' | '9v9' | '10v10' | '11v11');
     setTeamAScore(match.teamAScore);
     setTeamBScore(match.teamBScore);
     setMatchNotes(match.notes || '');
@@ -538,6 +538,46 @@ export default function StatsPage() {
           >
             7v7
           </button>
+          <button
+            onClick={() => setFilter('8v8')}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
+              filter === '8v8'
+                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+            }`}
+          >
+            8v8
+          </button>
+          <button
+            onClick={() => setFilter('9v9')}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
+              filter === '9v9'
+                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+            }`}
+          >
+            9v9
+          </button>
+          <button
+            onClick={() => setFilter('10v10')}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
+              filter === '10v10'
+                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+            }`}
+          >
+            10v10
+          </button>
+          <button
+            onClick={() => setFilter('11v11')}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
+              filter === '11v11'
+                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+            }`}
+          >
+            11v11
+          </button>
         </div>
 
         {/* Tabs */}
@@ -734,12 +774,16 @@ export default function StatsPage() {
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Maç Tipi</label>
             <select
               value={matchType}
-              onChange={(e) => setMatchType(e.target.value as '5v5' | '6v6' | '7v7')}
+              onChange={(e) => setMatchType(e.target.value as '5v5' | '6v6' | '7v7' | '8v8' | '9v9' | '10v10' | '11v11')}
               className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700/60 bg-white text-slate-900 dark:bg-slate-900/70 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               <option value="5v5">5v5</option>
               <option value="6v6">6v6</option>
               <option value="7v7">7v7</option>
+              <option value="8v8">8v8</option>
+              <option value="9v9">9v9</option>
+              <option value="10v10">10v10</option>
+              <option value="11v11">11v11</option>
             </select>
           </div>
           <div className="grid grid-cols-2 gap-3">

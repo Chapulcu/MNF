@@ -14,6 +14,10 @@ const benchCounts: Record<MatchType, number> = {
   '5v5': 3,
   '6v6': 4,
   '7v7': 5,
+  '8v8': 6,
+  '9v9': 6,
+  '10v10': 7,
+  '11v11': 7,
 };
 
 function buildBenchSlots(team: 'A' | 'B', matchType: MatchType) {

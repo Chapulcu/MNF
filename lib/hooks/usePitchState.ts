@@ -12,6 +12,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
   const [playerPool, setPlayerPool] = useState<Player[]>([]);
   const [scheduledAt, setScheduledAt] = useState<string | null>(null);
   const [isActive, setIsActive] = useState(false);
+  const [playerPositions, setPlayerPositions] = useState<Record<string, { x: number; y: number }>>({});
   const [loading, setLoading] = useState(true);
   const lastSyncTime = useRef<string>('');
   const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -42,6 +43,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
       setMatchType(pitchState.matchType as MatchType);
       setScheduledAt(pitchState.scheduledAt || null);
       setIsActive(!!pitchState.isActive);
+      setPlayerPositions(pitchState.playerPositions || {});
     } catch (error) {
       console.error('Failed to load initial data:', error);
     } finally {
@@ -71,6 +73,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
         setMatchType(pitchState.matchType as MatchType);
         setScheduledAt(pitchState.scheduledAt || null);
         setIsActive(!!pitchState.isActive);
+        setPlayerPositions(pitchState.playerPositions || {});
       }
     } catch (error) {
       console.error('Failed to sync from server:', error);
@@ -105,6 +108,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
         const result = await syncPitchState({
           activePlayers: activeSlots,
           matchType,
+          playerPositions,
         });
 
         lastSyncTime.current = result.updatedAt;
@@ -112,7 +116,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
         console.error('Failed to sync to server:', error);
       }
     }, 300); // Debounce sync by 300ms
-  }, [activePlayers, matchType]);
+  }, [activePlayers, matchType, playerPositions]);
 
   const loadPlayerPool = async () => {
     try {
@@ -143,10 +147,18 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
     });
   }, []);
 
+  const setPlayerPosition = useCallback((playerId: string, position: { x: number; y: number }) => {
+    setPlayerPositions((prev) => ({
+      ...prev,
+      [playerId]: position,
+    }));
+  }, []);
+
   const clearPitch = useCallback(async () => {
     try {
       await clearPitchStateAPI();
       setActivePlayers(new Map());
+      setPlayerPositions({});
       lastSyncTime.current = new Date().toISOString();
     } catch (error) {
       console.error('Failed to clear pitch:', error);
@@ -164,7 +176,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
         clearTimeout(syncTimeoutRef.current);
       }
     };
-  }, [activePlayers, matchType, loading, syncToServer]);
+  }, [activePlayers, matchType, playerPositions, loading, syncToServer]);
 
   // Calculate bench players (players on pitch beyond capacity)
   const config = getPitchConfig(matchType);
@@ -183,8 +195,10 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
     playerPool,
     scheduledAt,
     isActive,
+    playerPositions,
     addPlayerToSlot,
     removePlayerFromSlot,
+    setPlayerPosition,
     refreshPlayerPool,
     clearPitch,
     benchPlayers,

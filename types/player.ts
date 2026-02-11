@@ -11,7 +11,7 @@ export interface Player {
 
 export type Position = 'Forvet' | 'Orta Saha' | 'Defans' | 'Kaleci' | 'Farketmez';
 
-export type MatchType = '5v5' | '6v6' | '7v7';
+export type MatchType = '5v5' | '6v6' | '7v7' | '8v8' | '9v9' | '10v10' | '11v11';
 
 export interface PitchSlot {
   id: string;
@@ -25,9 +25,11 @@ export interface PitchState {
   playerPool: Player[];
   scheduledAt: string | null;
   isActive: boolean;
+  playerPositions: Record<string, { x: number; y: number }>;
   setMatchType: (type: MatchType) => void;
   addPlayerToSlot: (slotId: string, player: Player) => void;
   removePlayerFromSlot: (slotId: string) => void;
+  setPlayerPosition: (playerId: string, position: { x: number; y: number }) => void;
   refreshPlayerPool: () => void;
   clearPitch: () => void;
 }

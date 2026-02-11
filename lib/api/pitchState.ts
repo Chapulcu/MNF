@@ -10,6 +10,7 @@ export interface PitchState {
   teamBFormation: string | null;
   scheduledAt: string | null;
   isActive: boolean;
+  playerPositions: Record<string, { x: number; y: number }>;
   updatedAt: string;
 }
 
@@ -30,6 +31,7 @@ export async function updatePitchState(state: {
   teamBFormation?: string | null;
   scheduledAt?: string | null;
   isActive?: boolean;
+  playerPositions?: Record<string, { x: number; y: number }>;
 }): Promise<PitchState> {
   const response = await fetch(`${API_BASE}/pitch-state`, {
     method: 'PUT',

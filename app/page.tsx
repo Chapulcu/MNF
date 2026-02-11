@@ -26,8 +26,10 @@ export default function Home() {
     playerPool,
     scheduledAt,
     isActive,
+    playerPositions,
     addPlayerToSlot,
     removePlayerFromSlot,
+    setPlayerPosition,
     refreshPlayerPool,
     clearPitch,
   } = usePitchState();
@@ -50,7 +52,7 @@ export default function Home() {
   const [isSharing, setIsSharing] = useState(false);
   const pitchRef = useRef<HTMLDivElement | null>(null);
 
-  const matchTypes: MatchType[] = ['5v5', '6v6', '7v7'];
+  const matchTypes: MatchType[] = ['5v5', '6v6', '7v7', '8v8', '9v9', '10v10', '11v11'];
 
   // Auto-detect screen orientation on mobile and set pitch accordingly
   useEffect(() => {
@@ -250,6 +252,24 @@ export default function Home() {
     if (toPlayer) addPlayerToSlot(fromSlotId, toPlayer);
   };
 
+  const handlePlayerPositionChange = (slotId: string, position: { x: number; y: number }) => {
+    if (!isAuthenticated) {
+      alert('Konum değiştirmek için giriş yapmalısınız.');
+      return;
+    }
+
+    const player = activePlayers.get(slotId);
+    if (!player) return;
+
+    const isOwnPlayer = currentPlayer?.id === player.id;
+    if (!isAdmin && !isOwnPlayer) {
+      alert('Sadece kendi oyuncunuzun konumunu değiştirebilirsiniz.');
+      return;
+    }
+
+    setPlayerPosition(player.id, position);
+  };
+
   const handleFormationChange = (teamA: Formation | null, teamB: Formation | null) => {
     if (!teamA || !teamB) {
       // If no formation selected, just update state
@@ -340,15 +360,17 @@ export default function Home() {
 
           {/* Full screen pitch */}
           <div className="w-full max-w-7xl mx-auto px-2 sm:px-4">
-            <FootballPitch
-              matchType={matchType}
-              activePlayers={activePlayers}
-              onSlotClick={handleSlotClick}
-              onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
-              teamAFormation={teamAFormation}
-              teamBFormation={teamBFormation}
-              orientation={pitchOrientation}
-            />
+              <FootballPitch
+                matchType={matchType}
+                activePlayers={activePlayers}
+                playerPositions={playerPositions}
+                onSlotClick={handleSlotClick}
+                onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
+                onPlayerPositionChange={isAuthenticated ? handlePlayerPositionChange : undefined}
+                teamAFormation={teamAFormation}
+                teamBFormation={teamBFormation}
+                orientation={pitchOrientation}
+              />
           </div>
         </>
       ) : (
@@ -611,15 +633,17 @@ export default function Home() {
         {/* Football Pitch with Sidebar */}
         <div className="relative flex justify-center">
           <div className="w-full px-2 sm:px-4" ref={pitchRef}>
-            <FootballPitch
-              matchType={matchType}
-              activePlayers={activePlayers}
-              onSlotClick={handleSlotClick}
-              onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
-              teamAFormation={teamAFormation}
-              teamBFormation={teamBFormation}
-              orientation={pitchOrientation}
-            />
+              <FootballPitch
+                matchType={matchType}
+                activePlayers={activePlayers}
+                playerPositions={playerPositions}
+                onSlotClick={handleSlotClick}
+                onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
+                onPlayerPositionChange={isAuthenticated ? handlePlayerPositionChange : undefined}
+                teamAFormation={teamAFormation}
+                teamBFormation={teamBFormation}
+                orientation={pitchOrientation}
+              />
           </div>
           {/* Sidebar - hidden on mobile, fixed on larger screens */}
           <TeamRosterSidebar

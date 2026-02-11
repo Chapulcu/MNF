@@ -17,7 +17,7 @@ export async function GET() {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { matchType, activePlayers, teamAFormation, teamBFormation, scheduledAt, isActive } = body;
+    const { matchType, activePlayers, teamAFormation, teamBFormation, scheduledAt, isActive, playerPositions } = body;
 
     updatePitchState({
       matchType,
@@ -26,6 +26,7 @@ export async function PUT(request: NextRequest) {
       teamBFormation,
       scheduledAt: scheduledAt ? new Date(scheduledAt) : scheduledAt === null ? null : undefined,
       isActive,
+      playerPositions,
     });
 
     const updatedState = getPitchState();

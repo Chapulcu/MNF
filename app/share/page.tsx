@@ -7,7 +7,7 @@ import { getPitchConfig } from '@/lib/utils/pitch-layout';
 import { ArrowLeft, Share2 } from 'lucide-react';
 
 export default function SharePage() {
-  const { matchType, activePlayers } = usePitchState();
+  const { matchType, activePlayers, playerPositions } = usePitchState();
   const [pitchOrientation, setPitchOrientation] = useState<'horizontal' | 'vertical'>('horizontal');
 
   // Auto-detect screen orientation on mobile and set pitch accordingly
@@ -59,6 +59,7 @@ export default function SharePage() {
           <FootballPitch
             matchType={matchType}
             activePlayers={activePlayers}
+            playerPositions={playerPositions}
             onSlotClick={() => {}}
             orientation={pitchOrientation}
           />

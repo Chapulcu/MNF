@@ -5,14 +5,16 @@ import { PitchSlot } from './PitchSlot';
 import { getSlotPositions, getPitchConfig } from '@/lib/utils/pitch-layout';
 import { cn } from '@/lib/utils/cn';
 import type { Formation } from './FormationDiagram';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { ZoomIn, ZoomOut, Search } from 'lucide-react';
 
 interface FootballPitchProps {
   matchType: MatchType;
   activePlayers: Map<string, Player>;
+  playerPositions?: Record<string, { x: number; y: number }>;
   onSlotClick: (slotId: string) => void;
   onPlayerMove?: (fromSlotId: string, toSlotId: string) => void;
+  onPlayerPositionChange?: (slotId: string, position: { x: number; y: number }) => void;
   teamAFormation?: Formation | null;
   teamBFormation?: Formation | null;
   orientation?: 'horizontal' | 'vertical';
@@ -22,8 +24,10 @@ interface FootballPitchProps {
 export function FootballPitch({
   matchType,
   activePlayers,
+  playerPositions = {},
   onSlotClick,
   onPlayerMove,
+  onPlayerPositionChange,
   teamAFormation = null,
   teamBFormation = null,
   orientation = 'horizontal',
@@ -32,6 +36,7 @@ export function FootballPitch({
   const [draggedSlotId, setDraggedSlotId] = useState<string | null>(null);
   const [dragOverSlotId, setDragOverSlotId] = useState<string | null>(null);
   const [playerZoom, setPlayerZoom] = useState(1);
+  const pitchRef = useRef<HTMLDivElement | null>(null);
 
   // Load zoom preference from localStorage
   useEffect(() => {
@@ -114,10 +119,41 @@ export function FootballPitch({
     setDragOverSlotId(null);
   }, [draggedSlotId, onPlayerMove]);
 
+  const handlePitchDragOver = useCallback((e: React.DragEvent) => {
+    if (draggedSlotId) {
+      e.preventDefault();
+    }
+  }, [draggedSlotId]);
+
+  const handlePitchDrop = useCallback((e: React.DragEvent) => {
+    if (!draggedSlotId || !onPlayerPositionChange) return;
+    const rect = pitchRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const rawX = ((e.clientX - rect.left) / rect.width) * 100;
+    const rawY = ((e.clientY - rect.top) / rect.height) * 100;
+
+    const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+    const clampedX = clamp(rawX, 5, 95);
+    const clampedY = clamp(rawY, 5, 95);
+
+    const baseX = orientation === 'vertical' ? clampedY : clampedX;
+    const baseY = orientation === 'vertical' ? clampedX : clampedY;
+
+    onPlayerPositionChange(draggedSlotId, {
+      x: clamp(baseX, 5, 95),
+      y: clamp(baseY, 5, 95),
+    });
+
+    setDraggedSlotId(null);
+    setDragOverSlotId(null);
+  }, [draggedSlotId, onPlayerPositionChange, orientation]);
+
   return (
     <div className={cn('relative w-full', className)}>
       {/* Pitch Container */}
       <div
+        ref={pitchRef}
         className={cn(
           'relative rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden w-full',
           'border-2 sm:border-4 border-emerald-400/80'
@@ -126,6 +162,8 @@ export function FootballPitch({
           aspectRatio: aspectRatio,
           background: 'linear-gradient(180deg, #10b981 0%, #059669 50%, #047857 100%)',
         }}
+        onDragOver={handlePitchDragOver}
+        onDrop={handlePitchDrop}
       >
         {/* Grass texture effect */}
         <div
@@ -285,11 +323,16 @@ export function FootballPitch({
           const team = hasFormation && 'team' in pos ? pos.team : (positions[index]?.team || 'A');
 
           // Swap coordinates for vertical orientation
-          const slotX = orientation === 'vertical' ? pos.y : pos.x;
-          const slotY = orientation === 'vertical' ? pos.x : pos.y;
+          const customPosition = player ? playerPositions[player.id] : undefined;
+          const baseX = customPosition?.x ?? pos.x;
+          const baseY = customPosition?.y ?? pos.y;
+
+          const slotX = orientation === 'vertical' ? baseY : baseX;
+          const slotY = orientation === 'vertical' ? baseX : baseY;
 
           const isDragOver = dragOverSlotId === slotId;
           const isDragging = draggedSlotId === slotId;
+          const isDragEnabled = !!player && (!!onPlayerMove || !!onPlayerPositionChange);
 
           return (
             <div
@@ -306,7 +349,7 @@ export function FootballPitch({
                 team={team}
                 onClick={() => onSlotClick(slotId)}
                 isEmpty={!player}
-                isDraggable={!!player && !!onPlayerMove}
+                isDraggable={isDragEnabled}
                 isDragOver={isDragOver}
                 zoomLevel={playerZoom}
                 onDragStart={() => handleDragStart(slotId)}
