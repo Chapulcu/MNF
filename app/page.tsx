@@ -112,10 +112,11 @@ export default function Home() {
     const scheduledDate = parseScheduledAt(scheduledAt);
     const hasSchedule = !!scheduledDate;
     const isScheduleReady = !scheduledDate || now >= scheduledDate;
-    const canJoin = hasSchedule ? isScheduleReady : isActive;
+    // Allow admin to force-open the pitch early via "Saha Aktif".
+    const canJoin = isActive || !hasSchedule || isScheduleReady;
 
     if (!isAdmin && !canJoin) {
-      if (hasSchedule && !isScheduleReady) {
+      if (hasSchedule && !isScheduleReady && !isActive) {
         alert('Maç zamanı henüz gelmedi. Lütfen belirtilen saatte tekrar deneyin.');
         return;
       }
