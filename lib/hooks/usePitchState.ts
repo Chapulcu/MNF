@@ -16,6 +16,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
   const [loading, setLoading] = useState(true);
   const lastSyncTime = useRef<string>('');
   const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initialized = useRef(false);
 
   const loadInitialData = async () => {
     try {
@@ -44,6 +45,7 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
       setScheduledAt(pitchState.scheduledAt || null);
       setIsActive(!!pitchState.isActive);
       setPlayerPositions(pitchState.playerPositions || {});
+      initialized.current = true;
     } catch (error) {
       console.error('Failed to load initial data:', error);
     } finally {
@@ -115,6 +117,9 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
 
 
   const syncToServer = useCallback(() => {
+    // Don't sync until initial data has been loaded from server
+    if (!initialized.current) return;
+
     if (syncTimeoutRef.current) {
       clearTimeout(syncTimeoutRef.current);
     }
@@ -187,16 +192,14 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
 
   // Sync to server whenever active players or match type changes
   useEffect(() => {
-    if (!loading) {
-      syncToServer();
-    }
+    syncToServer();
 
     return () => {
       if (syncTimeoutRef.current) {
         clearTimeout(syncTimeoutRef.current);
       }
     };
-  }, [activePlayers, matchType, playerPositions, loading, syncToServer]);
+  }, [activePlayers, matchType, playerPositions, syncToServer]);
 
   // Calculate bench players (players on pitch beyond capacity)
   const config = getPitchConfig(matchType);
