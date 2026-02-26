@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPlayerById, updatePlayer, deletePlayer } from '@/lib/db/sqlite';
+import { getPlayerById, updatePlayer, deletePlayer, hashPassword } from '@/lib/db/sqlite';
+import { requireAdmin, withAuth } from '@/lib/utils/auth-guard';
 
 export async function GET(
   request: NextRequest,
@@ -22,42 +23,49 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { name, positionPreference, photoUrl, password, isAdmin } = body;
+  return withAuth(requireAdmin, async () => {
+    try {
+      const { id } = await params;
+      const body = await request.json();
+      const { name, positionPreference, photoUrl, password, isAdmin } = body;
 
-    const player = updatePlayer(id, {
-      name,
-      positionPreference,
-      photoUrl,
-      password,
-      isAdmin,
-    });
+      // Hash new password if provided
+      const hashedPassword = password ? await hashPassword(password) : undefined;
 
-    return NextResponse.json(player);
-  } catch (error) {
-    console.error('Failed to update player:', error);
-    return NextResponse.json(
-      { error: 'Failed to update player' },
-      { status: 500 }
-    );
-  }
+      const player = updatePlayer(id, {
+        name,
+        positionPreference,
+        photoUrl,
+        password: hashedPassword,
+        isAdmin,
+      });
+
+      return NextResponse.json(player);
+    } catch (error) {
+      console.error('Failed to update player:', error);
+      return NextResponse.json(
+        { error: 'Failed to update player' },
+        { status: 500 }
+      );
+    }
+  });
 }
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params;
-    deletePlayer(id);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Failed to delete player:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete player' },
-      { status: 500 }
-    );
-  }
+  return withAuth(requireAdmin, async () => {
+    try {
+      const { id } = await params;
+      deletePlayer(id);
+      return NextResponse.json({ success: true });
+    } catch (error) {
+      console.error('Failed to delete player:', error);
+      return NextResponse.json(
+        { error: 'Failed to delete player' },
+        { status: 500 }
+      );
+    }
+  });
 }

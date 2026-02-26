@@ -1,4 +1,6 @@
 import Database from 'better-sqlite3';
+import bcrypt from 'bcryptjs';
+import { randomBytes } from 'crypto';
 import path from 'path';
 
 const dbPath = path.join(process.cwd(), 'data', 'football.db');
@@ -214,7 +216,7 @@ export function getPlayerCount(): number {
 }
 
 export function createPlayer(player: Omit<Player, 'id' | 'createdAt' | 'updatedAt'>): Player {
-  const id = `player_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const id = `player_${randomBytes(8).toString('hex')}`;
   const now = new Date().toISOString();
 
   const stmt = db.prepare(`
@@ -320,6 +322,8 @@ export function getPitchState(): PitchState {
       activePlayers: [],
       teamAFormation: null,
       teamBFormation: null,
+      scheduledAt: null,
+      isActive: false,
       playerPositions: {},
       updatedAt: new Date(),
     };
@@ -399,20 +403,23 @@ export interface Session {
   expiresAt: Date;
 }
 
-export function loginPlayer(playerId: string, password: string): { success: boolean; player?: Player; sessionId?: string; error?: string } {
+export async function loginPlayer(playerId: string, password: string): Promise<{ success: boolean; player?: Player; sessionId?: string; error?: string }> {
   const player = getPlayerById(playerId);
 
   if (!player) {
     return { success: false, error: 'Oyuncu bulunamadı' };
   }
 
-  // Check password if set (admin users might have empty passwords initially)
-  if (player.password && player.password !== password) {
-    return { success: false, error: 'Hatalı şifre' };
+  // Check password with bcrypt if set
+  if (player.password) {
+    const isValid = await bcrypt.compare(password, player.password);
+    if (!isValid) {
+      return { success: false, error: 'Hatalı şifre' };
+    }
   }
 
-  // Create session
-  const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 16)}`;
+  // Create cryptographically secure session ID
+  const sessionId = randomBytes(32).toString('hex');
   const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
 
   const stmt = db.prepare(`
@@ -453,24 +460,20 @@ export function getSession(sessionId: string): { session: Session; player: Playe
   };
 }
 
-export function verifyPassword(playerId: string, password: string): boolean {
+export async function verifyPassword(playerId: string, password: string): Promise<boolean> {
   const player = getPlayerById(playerId);
-
-  if (!player) {
-    return false;
-  }
-
-  return player.password === password;
+  if (!player?.password) return false;
+  return bcrypt.compare(password, player.password);
 }
 
-export function setPlayerPassword(playerId: string, password: string): void {
+export async function setPlayerPassword(playerId: string, password: string): Promise<void> {
+  const hash = await bcrypt.hash(password, 12);
   const stmt = db.prepare('UPDATE players SET password = ? WHERE id = ?');
-  stmt.run(password, playerId);
+  stmt.run(hash, playerId);
 }
 
-export function hashPassword(password: string): string {
-  // Simple hash for demo purposes - in production, use bcrypt
-  return password; // TODO: Use proper password hashing
+export async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, 12);
 }
 
 // Match CRUD operations
@@ -755,13 +758,27 @@ export function deleteGoal(id: string): void {
 
 // Statistics functions
 export function getPlayerStats(): PlayerStats[] {
-  // Get all players
+  // Fetch all data in 3 queries instead of N+1
   const players = getAllPlayers();
-
-  // Get all matches with their goals
   const matches = getAllMatches();
 
-  // Build player stats map
+  // Fetch ALL confirmed goals in one query
+  const allGoalsStmt = db.prepare(`
+    SELECT player_id, match_id
+    FROM goals
+    WHERE is_confirmed = 1
+  `);
+  const allGoals = allGoalsStmt.all() as Array<{ player_id: string; match_id: string }>;
+
+  // Build a goal-count map: playerId → { matchId Set, count }
+  const goalsByPlayer = new Map<string, { matchIds: Set<string>; count: number }>();
+  for (const goal of allGoals) {
+    const entry = goalsByPlayer.get(goal.player_id) ?? { matchIds: new Set(), count: 0 };
+    entry.count++;
+    goalsByPlayer.set(goal.player_id, entry);
+  }
+
+  // Build player stats map from matches
   const statsMap = new Map<string, {
     playerId: string;
     playerName: string;
@@ -779,29 +796,19 @@ export function getPlayerStats(): PlayerStats[] {
       playerName: player.name,
       position: player.positionPreference,
       photoUrl: player.photoUrl,
-      totalGoals: 0,
+      totalGoals: goalsByPlayer.get(player.id)?.count ?? 0,
       totalMatches: 0,
       lastMatchDate: null,
     });
   }
 
-  // Process each match
+  // Process each match for participation counts
   for (const match of matches) {
-    // Combine both team players
     const allPlayerIds = [...match.teamAPlayers, ...match.teamBPlayers];
-
-    // Get goals for this match
-    const goals = getGoalsByMatch(match.id);
-
-    // Update stats for players who participated
     for (const playerId of allPlayerIds) {
       const stats = statsMap.get(playerId);
       if (stats) {
         stats.totalMatches++;
-        // Count goals for this player in this match
-        const playerGoals = goals.filter(g => g.playerId === playerId && g.isConfirmed).length;
-        stats.totalGoals += playerGoals;
-        // Update last match date if more recent
         if (!stats.lastMatchDate || match.date > stats.lastMatchDate) {
           stats.lastMatchDate = match.date;
         }
@@ -809,19 +816,17 @@ export function getPlayerStats(): PlayerStats[] {
     }
   }
 
-  // Convert to array and sort by goals, then matches
   return Array.from(statsMap.values())
     .map(stats => ({
       ...stats,
       goalsPerMatch: stats.totalMatches > 0 ? stats.totalGoals / stats.totalMatches : 0,
     }))
     .sort((a, b) => {
-      if (b.totalGoals !== a.totalGoals) {
-        return b.totalGoals - a.totalGoals;
-      }
+      if (b.totalGoals !== a.totalGoals) return b.totalGoals - a.totalGoals;
       return b.totalMatches - a.totalMatches;
     });
 }
+
 
 export function getMatchStats(): {
   totalMatches: number;

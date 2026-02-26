@@ -85,14 +85,34 @@ export function usePitchState(): LocalPitchState & { benchPlayers: Player[] } {
     loadInitialData();
   }, []);
 
-  // Poll for changes from other devices every 3 seconds
+  // Subscribe to real-time updates via Server-Sent Events (replaces polling)
   useEffect(() => {
-    const interval = setInterval(async () => {
-      await syncFromServer();
-    }, 3000);
+    let es: EventSource;
+    let retryTimeout: ReturnType<typeof setTimeout>;
 
-    return () => clearInterval(interval);
+    const connect = () => {
+      es = new EventSource('/api/pitch-state/stream');
+
+      es.onmessage = async () => {
+        // SSE push received — sync state from server
+        await syncFromServer();
+      };
+
+      es.onerror = () => {
+        es.close();
+        // Reconnect after 5 seconds
+        retryTimeout = setTimeout(connect, 5000);
+      };
+    };
+
+    connect();
+
+    return () => {
+      es?.close();
+      clearTimeout(retryTimeout);
+    };
   }, [syncFromServer]);
+
 
   const syncToServer = useCallback(() => {
     if (syncTimeoutRef.current) {

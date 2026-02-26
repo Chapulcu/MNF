@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { FootballPitch } from '@/components/pitch/FootballPitch';
 import { usePitchState } from '@/lib/hooks/usePitchState';
 import { getPitchConfig } from '@/lib/utils/pitch-layout';
@@ -38,13 +39,13 @@ export default function SharePage() {
       <div className="max-w-5xl mx-auto space-y-4">
         <div className="flex items-center justify-between gap-3 bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-xl px-4 py-3 shadow-lg">
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-2 text-slate-700 dark:text-white/80 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Geri dön
-            </a>
+            </Link>
             <div className="hidden sm:flex items-center gap-2 text-emerald-700 dark:text-emerald-300 text-sm">
               <Share2 className="w-4 h-4" />
               Paylaşılan Kadro
@@ -60,7 +61,7 @@ export default function SharePage() {
             matchType={matchType}
             activePlayers={activePlayers}
             playerPositions={playerPositions}
-            onSlotClick={() => {}}
+            onSlotClick={() => { }}
             orientation={pitchOrientation}
           />
         </div>

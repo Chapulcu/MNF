@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = loginPlayer(playerId, password);
+    const result = await loginPlayer(playerId, password);
 
     if (!result.success) {
       return NextResponse.json(

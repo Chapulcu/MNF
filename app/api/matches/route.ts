@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllMatches, createMatch, getGoalsByMatch, getPlayerById } from '@/lib/db/sqlite';
+import { requireAdmin, requireAuth, withAuth } from '@/lib/utils/auth-guard';
 
 export async function GET() {
   try {
@@ -32,36 +33,38 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { date, matchType, teamAScore, teamBScore, teamAFormation, teamBFormation, teamAPlayers, teamBPlayers, notes } = body;
+  return withAuth(requireAdmin, async () => {
+    try {
+      const body = await request.json();
+      const { date, matchType, teamAScore, teamBScore, teamAFormation, teamBFormation, teamAPlayers, teamBPlayers, notes } = body;
 
-    // Validate input
-    if (!date || !matchType || teamAScore === undefined || teamBScore === undefined) {
+      // Validate input
+      if (!date || !matchType || teamAScore === undefined || teamBScore === undefined) {
+        return NextResponse.json(
+          { error: 'Date, matchType, and scores are required' },
+          { status: 400 }
+        );
+      }
+
+      const match = createMatch({
+        date: new Date(date),
+        matchType,
+        teamAScore,
+        teamBScore,
+        teamAFormation: teamAFormation || null,
+        teamBFormation: teamBFormation || null,
+        teamAPlayers: teamAPlayers || [],
+        teamBPlayers: teamBPlayers || [],
+        notes: notes || null,
+      });
+
+      return NextResponse.json(match, { status: 201 });
+    } catch (error) {
+      console.error('Failed to create match:', error);
       return NextResponse.json(
-        { error: 'Date, matchType, and scores are required' },
-        { status: 400 }
+        { error: 'Failed to create match' },
+        { status: 500 }
       );
     }
-
-    const match = createMatch({
-      date: new Date(date),
-      matchType,
-      teamAScore,
-      teamBScore,
-      teamAFormation: teamAFormation || null,
-      teamBFormation: teamBFormation || null,
-      teamAPlayers: teamAPlayers || [],
-      teamBPlayers: teamBPlayers || [],
-      notes: notes || null,
-    });
-
-    return NextResponse.json(match, { status: 201 });
-  } catch (error) {
-    console.error('Failed to create match:', error);
-    return NextResponse.json(
-      { error: 'Failed to create match' },
-      { status: 500 }
-    );
-  }
+  });
 }

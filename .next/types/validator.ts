@@ -146,6 +146,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/api/pitch-state/stream/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/pitch-state/stream">> = Specific
+  const handler = {} as typeof import("../../app/api/pitch-state/stream/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/api/players/[id]/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/players/[id]">> = Specific

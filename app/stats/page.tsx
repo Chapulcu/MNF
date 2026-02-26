@@ -6,13 +6,18 @@ import { addGoal, createMatch, deleteGoal, deleteMatch, getAllMatches, getStats,
 import { getAllPlayers } from '@/lib/api/players';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { Calendar, Trophy, Target, TrendingUp, Users, Circle, ArrowLeft, Sparkles, Plus, Pencil, Trash2, CheckCircle, XCircle, ExternalLink } from 'lucide-react';
+import { Calendar, Trophy, Target, TrendingUp, Users, Circle, ArrowLeft, Sparkles, Plus } from 'lucide-react';
 import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Alert } from '@/components/ui/Alert';
 import { useToast } from '@/components/ui/Toast';
+import { FilterButton } from '@/components/ui/FilterButton';
+import { MatchCard } from '@/components/stats/MatchCard';
+import { PlayerStatCard } from '@/components/stats/PlayerStatCard';
+import { LeaderboardSection } from '@/components/stats/LeaderboardSection';
 import { Player } from '@/types';
+
 
 type TabType = 'matches' | 'players' | 'leaderboards';
 
@@ -21,11 +26,10 @@ function formatSeconds(seconds: number | null) {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
-  if (h > 0) {
-    return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  }
+  if (h > 0) return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
+
 
 export default function StatsPage() {
   const { isAdmin } = useAuth();
@@ -500,81 +504,73 @@ export default function StatsPage() {
         <div className="flex gap-2 flex-wrap">
           <button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === 'all'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === 'all'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             Tümü
           </button>
           <button
             onClick={() => setFilter('5v5')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '5v5'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '5v5'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             5v5
           </button>
           <button
             onClick={() => setFilter('6v6')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '6v6'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '6v6'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             6v6
           </button>
           <button
             onClick={() => setFilter('7v7')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '7v7'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '7v7'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             7v7
           </button>
           <button
             onClick={() => setFilter('8v8')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '8v8'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '8v8'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             8v8
           </button>
           <button
             onClick={() => setFilter('9v9')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '9v9'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '9v9'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             9v9
           </button>
           <button
             onClick={() => setFilter('10v10')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '10v10'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '10v10'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             10v10
           </button>
           <button
             onClick={() => setFilter('11v11')}
-            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${
-              filter === '11v11'
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
-            }`}
+            className={`px-4 py-2 rounded-lg sm:rounded-xl font-medium transition-all text-sm sm:text-base ${filter === '11v11'
+              ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30'
+              : 'bg-white/60 dark:bg-white/10 text-slate-700 dark:text-white/80 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20'
+              }`}
           >
             11v11
           </button>
@@ -585,33 +581,30 @@ export default function StatsPage() {
           <div className="flex border-b border-slate-300 dark:border-white/10">
             <button
               onClick={() => setActiveTab('matches')}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${
-                activeTab === 'matches'
-                  ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
-              }`}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${activeTab === 'matches'
+                ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
+                }`}
             >
               <Circle className="w-5 h-5" />
               Maçlar ({matches.length})
             </button>
             <button
               onClick={() => setActiveTab('players')}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${
-                activeTab === 'players'
-                  ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
-              }`}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${activeTab === 'players'
+                ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
+                }`}
             >
               <Users className="w-5 h-5" />
               Oyuncular ({playerStats.length})
             </button>
             <button
               onClick={() => setActiveTab('leaderboards')}
-              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${
-                activeTab === 'leaderboards'
-                  ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
-              }`}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium transition-all ${activeTab === 'leaderboards'
+                ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-500 dark:border-emerald-400 bg-emerald-50 dark:bg-emerald-500/10'
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
+                }`}
             >
               <Trophy className="w-5 h-5" />
               Lider Tablosu
@@ -905,10 +898,10 @@ export default function StatsPage() {
                   {(
                     goalMatch?.teamAPlayers?.length || goalMatch?.teamBPlayers?.length
                       ? players.filter((p) =>
-                          goalTeam === 'A'
-                            ? goalMatch?.teamAPlayers?.includes(p.id)
-                            : goalMatch?.teamBPlayers?.includes(p.id)
-                        )
+                        goalTeam === 'A'
+                          ? goalMatch?.teamAPlayers?.includes(p.id)
+                          : goalMatch?.teamBPlayers?.includes(p.id)
+                      )
                       : players
                   ).map((p) => (
                     <option key={p.id} value={p.id}>{p.name}</option>
@@ -922,11 +915,10 @@ export default function StatsPage() {
                     setGoalTeam('A');
                     setGoalPlayerId('');
                   }}
-                  className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                    goalTeam === 'A'
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700/60'
-                  }`}
+                  className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${goalTeam === 'A'
+                    ? 'bg-blue-500 text-white border-blue-500'
+                    : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700/60'
+                    }`}
                 >
                   Takım A
                 </button>
@@ -936,11 +928,10 @@ export default function StatsPage() {
                     setGoalTeam('B');
                     setGoalPlayerId('');
                   }}
-                  className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                    goalTeam === 'B'
-                      ? 'bg-red-500 text-white border-red-500'
-                      : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700/60'
-                  }`}
+                  className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${goalTeam === 'B'
+                    ? 'bg-red-500 text-white border-red-500'
+                    : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700/60'
+                    }`}
                 >
                   Takım B
                 </button>
@@ -993,581 +984,4 @@ export default function StatsPage() {
       </Modal>
     </div>
   );
-}
-
-// Match Card Component
-function MatchCard({
-  match,
-  isAdmin,
-  showPendingOnly,
-  selectedPendingGoals,
-  onToggleSelectPending,
-  onEditMatch,
-  onDeleteMatch,
-  onAddGoal,
-  onExportGoals,
-  onEditGoal,
-  onDeleteGoal,
-  onConfirmGoal,
-}: {
-  match: MatchWithGoals;
-  isAdmin: boolean;
-  showPendingOnly: boolean;
-  selectedPendingGoals: Set<string>;
-  onToggleSelectPending: (goalId: string) => void;
-  onEditMatch: () => void;
-  onDeleteMatch: () => void;
-  onAddGoal: () => void;
-  onExportGoals: () => void;
-  onEditGoal: (goal: GoalWithPlayer) => void;
-  onDeleteGoal: (goalId: string) => void;
-  onConfirmGoal: (goalId: string, confirmed: boolean) => void;
-}) {
-  const [goalsOpen, setGoalsOpen] = useState(false);
-  const result = getResult(match.teamAScore, match.teamBScore);
-  const filteredGoals = showPendingOnly ? match.goals.filter((g) => !g.isConfirmed) : match.goals;
-  const teamAGoals = filteredGoals.filter(g => g.team === 'A');
-  const teamBGoals = filteredGoals.filter(g => g.team === 'B');
-
-  const formatDate = (date: Date | string) => {
-    return new Date(date).toLocaleDateString('tr-TR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
-
-  return (
-    <div className="bg-white/70 dark:bg-slate-900/70 rounded-lg border border-slate-200/70 dark:border-slate-700/60 overflow-hidden hover:shadow-md transition-shadow">
-      <div className="p-4">
-        {/* Match Header */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-500 dark:text-slate-300">{formatDate(match.date)}</span>
-            <span className="px-2 py-1 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs rounded-full">
-              {match.matchType}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ResultBadge result={result} />
-            {isAdmin && (
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={onExportGoals}
-                  className="p-2.5 rounded-lg text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
-                  title="Maç gollerini dışa aktar"
-                >
-                  <Circle className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={onEditMatch}
-                  className="p-2.5 rounded-lg text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
-                  title="Maçı düzenle"
-                >
-                  <Pencil className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={onDeleteMatch}
-                  className="p-2.5 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-500/15 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
-                  title="Maçı sil"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Score */}
-        <div className="flex items-center justify-center gap-6 py-4">
-          {/* Team A */}
-          <div className="text-center">
-            <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-2 mx-auto shadow-lg">
-              A
-            </div>
-            <div className="text-3xl font-bold text-slate-900 dark:text-slate-100">{match.teamAScore}</div>
-          </div>
-
-          <div className="text-2xl text-slate-400 dark:text-slate-500 font-light">-</div>
-
-          {/* Team B */}
-          <div className="text-center">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-2 mx-auto shadow-lg">
-              B
-            </div>
-            <div className="text-3xl font-bold text-slate-900 dark:text-slate-100">{match.teamBScore}</div>
-          </div>
-        </div>
-
-        {/* Goals */}
-        <div className="mt-4 pt-4 border-t border-slate-200/70 dark:border-slate-700/60">
-          <button
-            onClick={() => setGoalsOpen((prev) => !prev)}
-            className="w-full flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-200 min-h-[44px]"
-          >
-            <span className="flex items-center gap-2">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
-                ⚽
-              </span>
-              Goller {showPendingOnly ? '(Bekleyenler)' : ''}
-            </span>
-            <span className="text-slate-500 dark:text-slate-300">
-              {filteredGoals.length} {goalsOpen ? '▲' : '▼'}
-            </span>
-          </button>
-
-          {goalsOpen && (
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-lg border border-blue-200/60 dark:border-blue-400/20 bg-blue-50/50 dark:bg-blue-500/10 p-3">
-                <div className="text-xs font-semibold text-blue-700 dark:text-blue-200 mb-2">Takım A</div>
-                {teamAGoals.length === 0 ? (
-                  <div className="text-xs text-slate-500 dark:text-slate-300">Gol yok</div>
-                ) : (
-                  <div className="space-y-2">
-                    {teamAGoals.map((goal) => (
-                      <div key={goal.id} className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-2">
-                          {showPendingOnly && (
-                            <input
-                              type="checkbox"
-                              checked={selectedPendingGoals.has(goal.id)}
-                              onChange={() => onToggleSelectPending(goal.id)}
-                              className="w-3.5 h-3.5 text-emerald-600 border-slate-300 dark:border-slate-600 rounded focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900"
-                            />
-                          )}
-                          <span className="text-blue-700 dark:text-blue-200 font-medium">{goal.playerName}</span>
-                          {!goal.isConfirmed && (
-                            <span className="px-1.5 py-0.5 bg-yellow-100/80 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-200 text-xs rounded">
-                              Onay bekliyor
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {goal.minute !== null && (
-                            <span className="text-slate-500 dark:text-slate-300">{formatSeconds(goal.minute)}</span>
-                          )}
-                          {goal.youtubeUrl && (
-                            <a
-                              href={goal.youtubeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-red-600 hover:underline"
-                            >
-                              YouTube
-                              <ExternalLink className="w-3 h-3" />
-                            </a>
-                          )}
-                          {isAdmin && (
-                            <div className="flex items-center gap-1">
-                              <button
-                                onClick={() => onEditGoal(goal)}
-                                className="p-2 rounded text-slate-600 dark:text-slate-200 hover:bg-white/70 dark:hover:bg-slate-800/60 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Golü düzenle"
-                              >
-                                <Pencil className="w-3.5 h-3.5" />
-                              </button>
-                              <button
-                                onClick={() => onConfirmGoal(goal.id, !goal.isConfirmed)}
-                                className="p-2 rounded text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-500/15 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title={goal.isConfirmed ? 'Onayı kaldır' : 'Onayla'}
-                              >
-                                {goal.isConfirmed ? <XCircle className="w-3.5 h-3.5" /> : <CheckCircle className="w-3.5 h-3.5" />}
-                              </button>
-                              <button
-                                onClick={() => onDeleteGoal(goal.id)}
-                                className="p-2 rounded text-red-600 hover:bg-red-50 dark:hover:bg-red-500/15 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Golü sil"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="rounded-lg border border-red-200/60 dark:border-red-400/20 bg-red-50/50 dark:bg-red-500/10 p-3">
-                <div className="text-xs font-semibold text-red-700 dark:text-red-200 mb-2">Takım B</div>
-                {teamBGoals.length === 0 ? (
-                  <div className="text-xs text-slate-500 dark:text-slate-300">Gol yok</div>
-                ) : (
-                  <div className="space-y-2">
-                    {teamBGoals.map((goal) => (
-                      <div key={goal.id} className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-2">
-                          {showPendingOnly && (
-                            <input
-                              type="checkbox"
-                              checked={selectedPendingGoals.has(goal.id)}
-                              onChange={() => onToggleSelectPending(goal.id)}
-                              className="w-3.5 h-3.5 text-emerald-600 border-slate-300 dark:border-slate-600 rounded focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-slate-900"
-                            />
-                          )}
-                          <span className="text-red-700 dark:text-red-200 font-medium">{goal.playerName}</span>
-                          {!goal.isConfirmed && (
-                            <span className="px-1.5 py-0.5 bg-yellow-100/80 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-200 text-xs rounded">
-                              Onay bekliyor
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {goal.minute !== null && (
-                            <span className="text-slate-500 dark:text-slate-300">{formatSeconds(goal.minute)}</span>
-                          )}
-                          {goal.youtubeUrl && (
-                            <a
-                              href={goal.youtubeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-red-600 hover:underline"
-                            >
-                              YouTube
-                              <ExternalLink className="w-3 h-3" />
-                            </a>
-                          )}
-                          {isAdmin && (
-                            <div className="flex items-center gap-1">
-                              <button
-                                onClick={() => onEditGoal(goal)}
-                                className="p-2 rounded text-slate-600 dark:text-slate-200 hover:bg-white/70 dark:hover:bg-slate-800/60 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Golü düzenle"
-                              >
-                                <Pencil className="w-3.5 h-3.5" />
-                              </button>
-                              <button
-                                onClick={() => onConfirmGoal(goal.id, !goal.isConfirmed)}
-                                className="p-2 rounded text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-500/15 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title={goal.isConfirmed ? 'Onayı kaldır' : 'Onayla'}
-                              >
-                                {goal.isConfirmed ? <XCircle className="w-3.5 h-3.5" /> : <CheckCircle className="w-3.5 h-3.5" />}
-                              </button>
-                              <button
-                                onClick={() => onDeleteGoal(goal.id)}
-                                className="p-2 rounded text-red-600 hover:bg-red-50 dark:hover:bg-red-500/15 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Golü sil"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {showPendingOnly && filteredGoals.length === 0 && (
-            <div className="mt-3 text-sm text-slate-500 dark:text-slate-300">
-              Bu maçta onay bekleyen gol yok.
-            </div>
-          )}
-        </div>
-
-        <div className="mt-3">
-          <button
-            onClick={onAddGoal}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 text-sm"
-          >
-            <Plus className="w-4 h-4" />
-            Gol Ekle
-          </button>
-        </div>
-
-        {/* Notes */}
-        {match.notes && (
-          <div className="mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/60">
-            <p className="text-sm text-slate-600 dark:text-slate-300">{match.notes}</p>
-          </div>
-        )}
-
-        {/* Roster Summary */}
-        {(match.teamAPlayers?.length || match.teamBPlayers?.length) && (
-          <div className="mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/60">
-            <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Kadro</div>
-            <div className="flex flex-wrap gap-2 text-xs">
-              <span className="px-2 py-0.5 rounded-full bg-blue-50/80 dark:bg-blue-500/15 text-blue-700 dark:text-blue-200">
-                A: {match.teamAPlayers?.length || 0}
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-red-50/80 dark:bg-red-500/15 text-red-700 dark:text-red-200">
-                B: {match.teamBPlayers?.length || 0}
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// Player Stat Card Component
-function PlayerStatCard({ stat }: { stat: PlayerStats }) {
-  return (
-    <div className="bg-white/70 dark:bg-slate-900/70 rounded-lg border border-slate-200/70 dark:border-slate-700/60 p-4 hover:shadow-md transition-shadow">
-      <div className="flex items-center gap-3 mb-3">
-        {stat.photoUrl ? (
-          <img src={stat.photoUrl} alt={stat.playerName} className="w-12 h-12 rounded-full object-cover" />
-        ) : (
-          <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            {stat.playerName.charAt(0).toUpperCase()}
-          </div>
-        )}
-        <div>
-          <h3 className="font-semibold text-slate-900 dark:text-slate-100">{stat.playerName}</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-300">{stat.position}</p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="bg-emerald-50/80 dark:bg-emerald-500/15 rounded-lg p-2">
-          <div className="text-lg font-bold text-emerald-600 dark:text-emerald-300">{stat.totalGoals}</div>
-          <div className="text-xs text-slate-600 dark:text-slate-300">Gol</div>
-        </div>
-        <div className="bg-blue-50/80 dark:bg-blue-500/15 rounded-lg p-2">
-          <div className="text-lg font-bold text-blue-600 dark:text-blue-300">{stat.totalMatches}</div>
-          <div className="text-xs text-slate-600 dark:text-slate-300">Maç</div>
-        </div>
-        <div className="bg-purple-50/80 dark:bg-purple-500/15 rounded-lg p-2">
-          <div className="text-lg font-bold text-purple-600 dark:text-purple-300">{stat.goalsPerMatch.toFixed(2)}</div>
-          <div className="text-xs text-slate-600 dark:text-slate-300">Gol/Maç</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Leaderboard Section Component
-function LeaderboardSection({ playerStats, matchStats }: { playerStats: PlayerStats[]; matchStats: MatchStats | null }) {
-  const topScorers = [...playerStats].sort((a, b) => b.totalGoals - a.totalGoals).slice(0, 10);
-  const mostMatches = [...playerStats].sort((a, b) => b.totalMatches - a.totalMatches).slice(0, 10);
-  const bestRatio = [...playerStats]
-    .filter(p => p.totalMatches >= 3)
-    .sort((a, b) => b.goalsPerMatch - a.goalsPerMatch)
-    .slice(0, 10);
-
-  const getMedal = (index: number) => {
-    if (index === 0) return '🥇';
-    if (index === 1) return '🥈';
-    if (index === 2) return '🥉';
-    return `${index + 1}.`;
-  };
-
-  return (
-    <div className="space-y-6">
-      {/* Match Stats Overview */}
-      {matchStats && (
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <div className="bg-gradient-to-br from-green-400 to-green-600 rounded-xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1">
-              <Circle className="w-5 h-5" />
-              <span className="text-sm opacity-90">Toplam Maç</span>
-            </div>
-            <div className="text-3xl font-bold">{matchStats.totalMatches}</div>
-          </div>
-          <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1">
-              <Target className="w-5 h-5" />
-              <span className="text-sm opacity-90">Toplam Gol</span>
-            </div>
-            <div className="text-3xl font-bold">{matchStats.totalGoals}</div>
-          </div>
-          <div className="bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1">
-              <TrendingUp className="w-5 h-5" />
-              <span className="text-sm opacity-90">Ortalama Gol</span>
-            </div>
-            <div className="text-3xl font-bold">{matchStats.avgGoalsPerMatch.toFixed(1)}</div>
-          </div>
-          <div className="bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1">
-              <Trophy className="w-5 h-5" />
-              <span className="text-sm opacity-90">A Takımı</span>
-            </div>
-            <div className="text-3xl font-bold">{matchStats.teamAWins}</div>
-            <div className="text-xs opacity-90">Galibiyet</div>
-          </div>
-          <div className="bg-gradient-to-br from-rose-400 to-red-600 rounded-xl p-4 text-white">
-            <div className="flex items-center gap-2 mb-1">
-              <Trophy className="w-5 h-5" />
-              <span className="text-sm opacity-90">B Takımı</span>
-            </div>
-            <div className="text-3xl font-bold">{matchStats.teamBWins}</div>
-            <div className="text-xs opacity-90">Galibiyet</div>
-          </div>
-        </div>
-      )}
-
-      {/* Top Scorers */}
-      <div>
-        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-2">
-          <Target className="w-5 h-5 text-yellow-500" />
-          Gol Kralları
-        </h3>
-        <div className="bg-white/70 dark:bg-slate-900/70 rounded-lg overflow-hidden border border-slate-200/70 dark:border-slate-700/60">
-          {topScorers.length === 0 ? (
-            <p className="text-center py-8 text-slate-500 dark:text-slate-300">Veri yok</p>
-          ) : (
-            <table className="w-full">
-              <thead className="bg-slate-100/80 dark:bg-slate-800/70">
-                <tr>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">#</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">Oyuncu</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Gol</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Maç</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Ort</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topScorers.map((stat, index) => (
-                  <tr key={stat.playerId} className="border-t border-slate-200/70 dark:border-slate-700/60 hover:bg-slate-50/80 dark:hover:bg-slate-800/50">
-                    <td className="px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200">{getMedal(index)}</td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        {stat.photoUrl ? (
-                          <img src={stat.photoUrl} alt={stat.playerName} className="w-8 h-8 rounded-full object-cover" />
-                        ) : (
-                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {stat.playerName.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                        <span className="font-medium text-slate-900 dark:text-slate-100">{stat.playerName}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-right font-semibold text-emerald-600 dark:text-emerald-300">{stat.totalGoals}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.totalMatches}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.goalsPerMatch.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </div>
-
-      {/* Most Matches */}
-      <div>
-        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-2">
-          <Calendar className="w-5 h-5 text-blue-500" />
-          En Çok Oynayanlar
-        </h3>
-        <div className="bg-white/70 dark:bg-slate-900/70 rounded-lg overflow-hidden border border-slate-200/70 dark:border-slate-700/60">
-          {mostMatches.length === 0 ? (
-            <p className="text-center py-8 text-slate-500 dark:text-slate-300">Veri yok</p>
-          ) : (
-            <table className="w-full">
-              <thead className="bg-slate-100/80 dark:bg-slate-800/70">
-                <tr>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">#</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">Oyuncu</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Maç</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Gol</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Ort</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mostMatches.map((stat, index) => (
-                  <tr key={stat.playerId} className="border-t border-slate-200/70 dark:border-slate-700/60 hover:bg-slate-50/80 dark:hover:bg-slate-800/50">
-                    <td className="px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200">{getMedal(index)}</td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        {stat.photoUrl ? (
-                          <img src={stat.photoUrl} alt={stat.playerName} className="w-8 h-8 rounded-full object-cover" />
-                        ) : (
-                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {stat.playerName.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                        <span className="font-medium text-slate-900 dark:text-slate-100">{stat.playerName}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-right font-semibold text-blue-600 dark:text-blue-300">{stat.totalMatches}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.totalGoals}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.goalsPerMatch.toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </div>
-
-      {/* Best Goal Ratio */}
-      <div>
-        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-purple-500" />
-          En Verimli Oyuncular (Min. 3 Maç)
-        </h3>
-        <div className="bg-white/70 dark:bg-slate-900/70 rounded-lg overflow-hidden border border-slate-200/70 dark:border-slate-700/60">
-          {bestRatio.length === 0 ? (
-            <p className="text-center py-8 text-slate-500 dark:text-slate-300">Veri yok (en az 3 maç gerekli)</p>
-          ) : (
-            <table className="w-full">
-              <thead className="bg-slate-100/80 dark:bg-slate-800/70">
-                <tr>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">#</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold text-slate-700 dark:text-slate-200">Oyuncu</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Gol/Maç</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Gol</th>
-                  <th className="px-4 py-2 text-right text-sm font-semibold text-slate-700 dark:text-slate-200">Maç</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bestRatio.map((stat, index) => (
-                  <tr key={stat.playerId} className="border-t border-slate-200/70 dark:border-slate-700/60 hover:bg-slate-50/80 dark:hover:bg-slate-800/50">
-                    <td className="px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200">{getMedal(index)}</td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        {stat.photoUrl ? (
-                          <img src={stat.photoUrl} alt={stat.playerName} className="w-8 h-8 rounded-full object-cover" />
-                        ) : (
-                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {stat.playerName.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                        <span className="font-medium text-slate-900 dark:text-slate-100">{stat.playerName}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-right font-semibold text-purple-600 dark:text-purple-300">{stat.goalsPerMatch.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.totalGoals}</td>
-                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">{stat.totalMatches}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Result Badge Component
-function ResultBadge({ result }: { result: 'win' | 'loss' | 'draw' }) {
-  const config = {
-    win: { bg: 'bg-emerald-100/80 dark:bg-emerald-500/15', text: 'text-emerald-700 dark:text-emerald-200', label: 'A Kazandı' },
-    loss: { bg: 'bg-red-100/80 dark:bg-red-500/15', text: 'text-red-700 dark:text-red-200', label: 'B Kazandı' },
-    draw: { bg: 'bg-slate-100/80 dark:bg-slate-700/40', text: 'text-slate-700 dark:text-slate-200', label: 'Berabere' },
-  };
-
-  const { bg, text, label } = config[result];
-
-  return (
-    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${bg} ${text}`}>
-      {label}
-    </span>
-  );
-}
-
-// Helper function to determine match result
-function getResult(teamAScore: number, teamBScore: number): 'win' | 'loss' | 'draw' {
-  if (teamAScore > teamBScore) return 'win';
-  if (teamAScore < teamBScore) return 'loss';
-  return 'draw';
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getMatchById, updateMatch, deleteMatch, getGoalsByMatch, createGoal, updateGoal, deleteGoal, getAllPlayers } from '@/lib/db/sqlite';
+import { requireAdmin, requireAuth, withAuth } from '@/lib/utils/auth-guard';
 
 export async function GET(
   request: NextRequest,
@@ -32,48 +33,52 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { date, matchType, teamAScore, teamBScore, teamAFormation, teamBFormation, teamAPlayers, teamBPlayers, notes } = body;
+  return withAuth(requireAdmin, async () => {
+    try {
+      const { id } = await params;
+      const body = await request.json();
+      const { date, matchType, teamAScore, teamBScore, teamAFormation, teamBFormation, teamAPlayers, teamBPlayers, notes } = body;
 
-    const match = updateMatch(id, {
-      date: date ? new Date(date) : undefined,
-      matchType,
-      teamAScore,
-      teamBScore,
-      teamAFormation,
-      teamBFormation,
-      teamAPlayers,
-      teamBPlayers,
-      notes,
-    });
+      const match = updateMatch(id, {
+        date: date ? new Date(date) : undefined,
+        matchType,
+        teamAScore,
+        teamBScore,
+        teamAFormation,
+        teamBFormation,
+        teamAPlayers,
+        teamBPlayers,
+        notes,
+      });
 
-    return NextResponse.json(match);
-  } catch (error) {
-    console.error('Failed to update match:', error);
-    return NextResponse.json(
-      { error: 'Failed to update match' },
-      { status: 500 }
-    );
-  }
+      return NextResponse.json(match);
+    } catch (error) {
+      console.error('Failed to update match:', error);
+      return NextResponse.json(
+        { error: 'Failed to update match' },
+        { status: 500 }
+      );
+    }
+  });
 }
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params;
-    deleteMatch(id);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Failed to delete match:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete match' },
-      { status: 500 }
-    );
-  }
+  return withAuth(requireAdmin, async () => {
+    try {
+      const { id } = await params;
+      deleteMatch(id);
+      return NextResponse.json({ success: true });
+    } catch (error) {
+      console.error('Failed to delete match:', error);
+      return NextResponse.json(
+        { error: 'Failed to delete match' },
+        { status: 500 }
+      );
+    }
+  });
 }
 
 // Goal operations for a specific match
@@ -81,33 +86,38 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params; // match id
-    const body = await request.json();
-    const { playerId, minute, team, isConfirmed, youtubeUrl } = body;
+  return withAuth(requireAuth, async (player) => {
+    try {
+      const { id } = await params; // match id
+      const body = await request.json();
+      const { playerId, minute, team, isConfirmed, youtubeUrl } = body;
 
-    if (!playerId || !team) {
+      if (!playerId || !team) {
+        return NextResponse.json(
+          { error: 'PlayerId and team are required' },
+          { status: 400 }
+        );
+      }
+
+      // Only admin can pre-confirm goals; others' goals start as unconfirmed
+      const goalConfirmed = player.isAdmin ? (isConfirmed ?? false) : false;
+
+      const goal = createGoal({
+        matchId: id,
+        playerId,
+        minute: minute || null,
+        team,
+        isConfirmed: goalConfirmed,
+        youtubeUrl: youtubeUrl || null,
+      });
+
+      return NextResponse.json(goal, { status: 201 });
+    } catch (error) {
+      console.error('Failed to create goal:', error);
       return NextResponse.json(
-        { error: 'PlayerId and team are required' },
-        { status: 400 }
+        { error: 'Failed to create goal' },
+        { status: 500 }
       );
     }
-
-    const goal = createGoal({
-      matchId: id,
-      playerId,
-      minute: minute || null,
-      team,
-      isConfirmed: isConfirmed ?? false,
-      youtubeUrl: youtubeUrl || null,
-    });
-
-    return NextResponse.json(goal, { status: 201 });
-  } catch (error) {
-    console.error('Failed to create goal:', error);
-    return NextResponse.json(
-      { error: 'Failed to create goal' },
-      { status: 500 }
-    );
-  }
+  });
 }

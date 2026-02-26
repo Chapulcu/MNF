@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, updateMaxPlayers, getPlayerCount } from '@/lib/db/sqlite';
+import { requireAdmin, withAuth } from '@/lib/utils/auth-guard';
 
 export async function GET() {
   try {
@@ -16,33 +17,35 @@ export async function GET() {
 }
 
 export async function PUT(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { maxPlayers } = body;
+  return withAuth(requireAdmin, async () => {
+    try {
+      const body = await request.json();
+      const { maxPlayers } = body;
 
-    if (typeof maxPlayers !== 'number' || maxPlayers < 1) {
+      if (typeof maxPlayers !== 'number' || maxPlayers < 1) {
+        return NextResponse.json(
+          { error: 'maxPlayers must be a positive number' },
+          { status: 400 }
+        );
+      }
+
+      const currentCount = getPlayerCount();
+      if (maxPlayers < currentCount) {
+        return NextResponse.json(
+          { error: `Mevcut oyuncu sayısı (${currentCount}) yeni limitten (${maxPlayers}) fazla olamaz.` },
+          { status: 400 }
+        );
+      }
+
+      updateMaxPlayers(maxPlayers);
+      const settings = getSettings();
+      return NextResponse.json(settings);
+    } catch (error) {
+      console.error('Failed to update settings:', error);
       return NextResponse.json(
-        { error: 'maxPlayers must be a positive number' },
-        { status: 400 }
+        { error: 'Failed to update settings' },
+        { status: 500 }
       );
     }
-
-    const currentCount = getPlayerCount();
-    if (maxPlayers < currentCount) {
-      return NextResponse.json(
-        { error: `Mevcut oyuncu sayısı (${currentCount}) yeni limitten (${maxPlayers}) fazla olamaz.` },
-        { status: 400 }
-      );
-    }
-
-    updateMaxPlayers(maxPlayers);
-    const settings = getSettings();
-    return NextResponse.json(settings);
-  } catch (error) {
-    console.error('Failed to update settings:', error);
-    return NextResponse.json(
-      { error: 'Failed to update settings' },
-      { status: 500 }
-    );
-  }
+  });
 }

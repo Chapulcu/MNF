@@ -5,6 +5,7 @@ import { usePitchState } from '@/lib/hooks/usePitchState';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { useTheme } from '@/lib/contexts/ThemeContext';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { TacticsOverlay } from '@/components/pitch/TacticsOverlay';
 import { FootballPitch } from '@/components/pitch/FootballPitch';
 import { useToast } from '@/components/ui/Toast';
 import { PlayerSelectorModal } from '@/components/player/PlayerSelectorModal';
@@ -106,7 +107,7 @@ export default function Home() {
 
   const handleSlotClick = (slotId: string) => {
     if (!isAuthenticated) {
-      alert('Slot seçmek için giriş yapmalısınız.');
+      toast('Slot seçmek için giriş yapmalısınız.', 'error');
       return;
     }
 
@@ -119,11 +120,11 @@ export default function Home() {
 
     if (!isAdmin && !canJoin) {
       if (hasSchedule && !isScheduleReady && !isActive) {
-        alert('Maç zamanı henüz gelmedi. Lütfen belirtilen saatte tekrar deneyin.');
+        toast('Maç zamanı henüz gelmedi. Lütfen belirtilen saatte tekrar deneyin.', 'error');
         return;
       }
       if (!hasSchedule && !isActive) {
-        alert('Saha şu an aktif değil. Admin tarafından aktif edildikten sonra katılabilirsiniz.');
+        toast('Saha şu an aktif değil. Admin tarafından aktif edildikten sonra katılabilirsiniz.', 'error');
         return;
       }
     }
@@ -135,7 +136,7 @@ export default function Home() {
       const canRemove = isAdmin || isOwnSlot;
 
       if (!canRemove) {
-        alert('Bu slotu sadece kendisi veya admin boşaltabilir.');
+        toast('Bu slotu sadece kendisi veya admin boşaltabilir.', 'error');
         return;
       }
 
@@ -148,7 +149,7 @@ export default function Home() {
         )?.[0];
 
         if (currentUserSlotId) {
-          alert('Zaten bir slota atanmışsınız. Önce mevcut slotunuzu boşaltın.');
+          toast('Zaten bir slota atanmışsınız. Önce mevcut slotunuzu boşaltın.', 'error');
           return;
         }
       }
@@ -215,7 +216,7 @@ export default function Home() {
 
   const handlePlayerMove = (fromSlotId: string, toSlotId: string) => {
     if (!isAuthenticated) {
-      alert('Slot değiştirmek için giriş yapmalısınız.');
+      toast('Slot değiştirmek için giriş yapmalısınız.', 'error');
       return;
     }
 
@@ -225,7 +226,7 @@ export default function Home() {
     // Check permissions: only admin or the player themselves can move
     const isOwnPlayer = isAuthenticated && currentPlayer?.id === player.id;
     if (!isAdmin && !isOwnPlayer) {
-      alert('Sadece kendi slotunuzu taşıyabilirsiniz.');
+      toast('Sadece kendi slotunuzu taşıyabilirsiniz.', 'error');
       return;
     }
 
@@ -234,7 +235,7 @@ export default function Home() {
     if (targetPlayer) {
       // Only admins can swap occupied slots
       if (!isAdmin) {
-        alert('Dolu bir slota sadece admin taşıma yapabilir.');
+        toast('Dolu bir slota sadece admin taşıma yapabilir.', 'error');
         return;
       }
     }
@@ -254,7 +255,7 @@ export default function Home() {
 
   const handlePlayerPositionChange = (slotId: string, position: { x: number; y: number }) => {
     if (!isAuthenticated) {
-      alert('Konum değiştirmek için giriş yapmalısınız.');
+      toast('Konum değiştirmek için giriş yapmalısınız.', 'error');
       return;
     }
 
@@ -263,7 +264,7 @@ export default function Home() {
 
     const isOwnPlayer = currentPlayer?.id === player.id;
     if (!isAdmin && !isOwnPlayer) {
-      alert('Sadece kendi oyuncunuzun konumunu değiştirebilirsiniz.');
+      toast('Sadece kendi oyuncunuzun konumunu değiştirebilirsiniz.', 'error');
       return;
     }
 
@@ -360,6 +361,7 @@ export default function Home() {
 
           {/* Full screen pitch */}
           <div className="w-full max-w-7xl mx-auto px-2 sm:px-4">
+            <div className="relative">
               <FootballPitch
                 matchType={matchType}
                 activePlayers={activePlayers}
@@ -371,6 +373,8 @@ export default function Home() {
                 teamBFormation={teamBFormation}
                 orientation={pitchOrientation}
               />
+              <TacticsOverlay active={fullScreenPitch} />
+            </div>
           </div>
         </>
       ) : (
@@ -429,11 +433,10 @@ export default function Home() {
 
                 {/* Match schedule info */}
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm">
-                  <span className={`px-2.5 py-1 rounded-full border ${
-                    isActive
-                      ? 'bg-emerald-100/80 dark:bg-emerald-500/15 border-emerald-300/70 dark:border-emerald-400/30 text-emerald-700 dark:text-emerald-200'
-                      : 'bg-slate-100/80 dark:bg-slate-800/60 border-slate-300/70 dark:border-slate-700/60 text-slate-600 dark:text-slate-300'
-                  }`}>
+                  <span className={`px-2.5 py-1 rounded-full border ${isActive
+                    ? 'bg-emerald-100/80 dark:bg-emerald-500/15 border-emerald-300/70 dark:border-emerald-400/30 text-emerald-700 dark:text-emerald-200'
+                    : 'bg-slate-100/80 dark:bg-slate-800/60 border-slate-300/70 dark:border-slate-700/60 text-slate-600 dark:text-slate-300'
+                    }`}>
                     {isActive ? 'Saha Aktif' : 'Saha Pasif'}
                   </span>
                   {scheduledAt && (
@@ -449,11 +452,10 @@ export default function Home() {
                     <button
                       key={type}
                       onClick={() => handleMatchTypeChange(type)}
-                      className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-bold transition-all duration-200 text-sm sm:text-base ${
-                        matchType === type
-                          ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30 scale-105'
-                          : 'bg-white/40 dark:bg-white/5 text-slate-700 dark:text-white/80 hover:bg-white/60 dark:hover:bg-white/10 border border-slate-300 dark:border-white/20'
-                      }`}
+                      className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-bold transition-all duration-200 text-sm sm:text-base ${matchType === type
+                        ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-white shadow-lg shadow-emerald-500/30 scale-105'
+                        : 'bg-white/40 dark:bg-white/5 text-slate-700 dark:text-white/80 hover:bg-white/60 dark:hover:bg-white/10 border border-slate-300 dark:border-white/20'
+                        }`}
                     >
                       {type}
                     </button>
@@ -462,254 +464,251 @@ export default function Home() {
               </div>
             </div>
 
-        {/* Actions */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
-          <Button
-            onClick={refreshPlayerPool}
-            variant="secondary"
-            className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
-          >
-            <Link className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="hidden sm:inline">Oyuncuları Yenile</span>
-            <span className="sm:hidden">Yenile</span>
-          </Button>
-          <Button
-            onClick={() => setShowFormation(true)}
-            variant="secondary"
-            className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
-          >
-            <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-            Formasyon
-          </Button>
-          {/* Pitch Orientation Toggle */}
-          <button
-            onClick={() => setPitchOrientation(pitchOrientation === 'horizontal' ? 'vertical' : 'horizontal')}
-            className={`flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${
-              pitchOrientation === 'horizontal'
-                ? 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
-                : 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 dark:hover:from-emerald-500 dark:hover:to-cyan-500 border-emerald-400/50 text-white'
-            }`}
-          >
-            <RotateCw className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="hidden sm:inline">{pitchOrientation === 'horizontal' ? 'Yatay' : 'Dikey'}</span>
-            <span className="sm:hidden">{pitchOrientation === 'horizontal' ? 'Yatay' : 'Dikey'}</span>
-          </button>
-          <Button
-            onClick={handleSharePitch}
-            variant="secondary"
-            disabled={isSharing}
-            className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl disabled:opacity-60"
-          >
-            <Share2 className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="hidden sm:inline">{isSharing ? 'Paylaşılıyor' : 'Paylaş'}</span>
-            <span className="sm:hidden">{isSharing ? 'Paylaşılıyor' : 'Paylaş'}</span>
-          </Button>
-          {/* Desktop Sidebar Toggle - only shows on desktop */}
-          <button
-            onClick={() => setShowDesktopSidebar(!showDesktopSidebar)}
-            className={`hidden lg:flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${
-              showDesktopSidebar
-                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 border-emerald-400/50 text-white'
-                : 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
-            }`}
-          >
-            <List className="w-3 h-3 sm:w-4 sm:h-4" />
-            Kadro
-          </button>
-          {/* Full Screen Pitch Toggle */}
-          <button
-            onClick={() => setFullScreenPitch(!fullScreenPitch)}
-            className={`flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${
-              fullScreenPitch
-                ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 border-amber-400/50 text-white'
-                : 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
-            }`}
-          >
-            {fullScreenPitch ? <Minimize className="w-3 h-3 sm:w-4 sm:h-4" /> : <Maximize className="w-3 h-3 sm:w-4 sm:h-4" />}
-            <span className="hidden sm:inline">{fullScreenPitch ? 'Tam Ekran Çık' : 'Tam Ekran'}</span>
-            <span className="sm:hidden">{fullScreenPitch ? 'Çık' : 'Tam Ekran'}</span>
-          </button>
-          {/* Mobile Roster Button - only shows on mobile */}
-          <button
-            onClick={() => setShowRoster(true)}
-            className="lg:hidden flex items-center gap-1.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs px-3 py-2 rounded-lg font-medium transition-all"
-          >
-            <List className="w-3 h-3" />
-            Kadrolar
-          </button>
-          {isAdmin && activePlayers.size > 0 && (
-            <Button
-              onClick={() => {
-                clearPitch();
-                setMatchType('5v5');
-                setTeamAFormation(null);
-                setTeamBFormation(null);
-                setTeamAFormationIndex(0);
-                setTeamBFormationIndex(0);
-              }}
-              variant="danger"
-              className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 border border-red-400/50 text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
-            >
-              Sahayı Temizle
-            </Button>
-          )}
-          {isAuthenticated ? (
-            <div className="flex items-center gap-2">
-              <span className="hidden sm:inline text-xs sm:text-sm text-slate-700 dark:text-white/80 px-2">
-                {currentPlayer?.name}
-                {currentPlayer?.isAdmin && ' (Admin)'}
-              </span>
-              <button
-                onClick={async () => {
-                  await authLogout();
-                  window.location.href = '/login';
-                }}
-                className="px-3 sm:px-4 py-2 sm:py-2.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 text-xs sm:text-sm"
+            {/* Actions */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
+              <Button
+                onClick={refreshPlayerPool}
+                variant="secondary"
+                className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
               >
-                <LogOut className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Çıkış</span>
+                <Link className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Oyuncuları Yenile</span>
+                <span className="sm:hidden">Yenile</span>
+              </Button>
+              <Button
+                onClick={() => setShowFormation(true)}
+                variant="secondary"
+                className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
+              >
+                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                Formasyon
+              </Button>
+              {/* Pitch Orientation Toggle */}
+              <button
+                onClick={() => setPitchOrientation(pitchOrientation === 'horizontal' ? 'vertical' : 'horizontal')}
+                className={`flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${pitchOrientation === 'horizontal'
+                  ? 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
+                  : 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 dark:hover:from-emerald-500 dark:hover:to-cyan-500 border-emerald-400/50 text-white'
+                  }`}
+              >
+                <RotateCw className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">{pitchOrientation === 'horizontal' ? 'Yatay' : 'Dikey'}</span>
+                <span className="sm:hidden">{pitchOrientation === 'horizontal' ? 'Yatay' : 'Dikey'}</span>
               </button>
-            </div>
-          ) : (
-            <a
-              href="/login"
-              className="px-3 sm:px-5 py-2 sm:py-2.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
-            >
-              <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Giriş</span>
-            </a>
-          )}
-          {isAdmin && (
-            <a
-              href="/admin"
-              className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 dark:from-purple-400 dark:to-pink-400 dark:hover:from-purple-500 dark:hover:to-pink-500 border border-purple-400/50 text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
-            >
-              <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Yönetim</span>
-            </a>
-          )}
-          {isAuthenticated && (
-            <a
-              href="/stats"
-              className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 border border-cyan-400/50 text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
-            >
-              <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">İstatistik</span>
-            </a>
-          )}
-        </div>
-
-        {/* Formation Info - Modern glass cards */}
-        {(teamAFormation || teamBFormation) && (
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 px-2">
-            {teamAFormation && (
-              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-md border border-blue-400/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
-                <p className="text-white font-bold text-xs sm:text-sm">{teamAFormation.name}</p>
-                <p className="text-blue-200 text-[10px] sm:text-xs mt-0.5">{teamAFormation.description}</p>
-              </div>
-            )}
-            {teamBFormation && (
-              <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 backdrop-blur-md border border-red-400/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
-                <p className="text-white font-bold text-xs sm:text-sm">{teamBFormation.name}</p>
-                <p className="text-red-200 text-[10px] sm:text-xs mt-0.5">{teamBFormation.description}</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Quick Actions */}
-        {playerPool.length === 0 && (
-          <GlassCard className="p-6 bg-blue-500/20 backdrop-blur-md border border-blue-400/40 text-center rounded-xl">
-            <p className="text-blue-100 text-lg mb-3 font-medium">👥 Başlamak için oyuncu ekleyin</p>
-            <a
-              href="/admin"
-              className="inline-block px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg"
-            >
-              Admin Sayfasına Git
-            </a>
-          </GlassCard>
-        )}
-
-        {/* Football Pitch with Sidebar */}
-        <div className="relative flex justify-center">
-          <div className="w-full px-2 sm:px-4" ref={pitchRef}>
-              <FootballPitch
-                matchType={matchType}
-                activePlayers={activePlayers}
-                playerPositions={playerPositions}
-                onSlotClick={handleSlotClick}
-                onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
-                onPlayerPositionChange={isAuthenticated ? handlePlayerPositionChange : undefined}
-                teamAFormation={teamAFormation}
-                teamBFormation={teamBFormation}
-                orientation={pitchOrientation}
-              />
-          </div>
-          {/* Sidebar - hidden on mobile, fixed on larger screens */}
-          <TeamRosterSidebar
-            activePlayers={activePlayers}
-            totalSlots={config.totalSlots}
-            isOpen={showDesktopSidebar}
-            onToggle={() => setShowDesktopSidebar(!showDesktopSidebar)}
-          />
-        </div>
-
-        {/* Bench Section */}
-        <BenchSection
-          matchType={matchType}
-          activePlayers={activePlayers}
-          onSlotClick={handleSlotClick}
-        />
-
-        {/* Player Selector Modal */}
-        <PlayerSelectorModal
-          isOpen={showModal}
-          onClose={() => {
-            setShowModal(false);
-            setSelectedSlotId(null);
-          }}
-          availablePlayers={availablePlayers}
-          onSelectPlayer={handleSelectPlayer}
-        />
-
-        {/* Formation Diagram Modal */}
-        {showFormation && (
-          <FormationDiagram
-            matchType={matchType}
-            onClose={handleFormationChange}
-            initialTeamAIndex={teamAFormationIndex}
-            initialTeamBIndex={teamBFormationIndex}
-            currentTeamAFormation={teamAFormation}
-            currentTeamBFormation={teamBFormation}
-          />
-        )}
-
-        {/* Mobile Roster Modal */}
-        {showRoster && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-end justify-center lg:hidden">
-            <div className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 backdrop-blur-xl border-t border-slate-300 dark:border-slate-700 rounded-t-2xl shadow-2xl w-full max-h-[80vh] overflow-y-auto">
-              <div className="sticky top-0 z-10 p-4 bg-slate-50/95 dark:bg-slate-900/95 border-b border-slate-300 dark:border-slate-700 backdrop-blur-xl flex items-center justify-between">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Users className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
-                  Takım Kadroları
-                </h3>
-                <button
-                  onClick={() => setShowRoster(false)}
-                  className="p-2 text-slate-600 dark:text-white/80 hover:bg-slate-200 dark:hover:bg-slate-700/50 rounded-full transition-colors"
+              <Button
+                onClick={handleSharePitch}
+                variant="secondary"
+                disabled={isSharing}
+                className="flex items-center gap-1.5 sm:gap-2 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl disabled:opacity-60"
+              >
+                <Share2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">{isSharing ? 'Paylaşılıyor' : 'Paylaş'}</span>
+                <span className="sm:hidden">{isSharing ? 'Paylaşılıyor' : 'Paylaş'}</span>
+              </Button>
+              {/* Desktop Sidebar Toggle - only shows on desktop */}
+              <button
+                onClick={() => setShowDesktopSidebar(!showDesktopSidebar)}
+                className={`hidden lg:flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${showDesktopSidebar
+                  ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 border-emerald-400/50 text-white'
+                  : 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
+                  }`}
+              >
+                <List className="w-3 h-3 sm:w-4 sm:h-4" />
+                Kadro
+              </button>
+              {/* Full Screen Pitch Toggle */}
+              <button
+                onClick={() => setFullScreenPitch(!fullScreenPitch)}
+                className={`flex items-center gap-1.5 sm:gap-2 border backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium transition-all ${fullScreenPitch
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 border-amber-400/50 text-white'
+                  : 'bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white'
+                  }`}
+              >
+                {fullScreenPitch ? <Minimize className="w-3 h-3 sm:w-4 sm:h-4" /> : <Maximize className="w-3 h-3 sm:w-4 sm:h-4" />}
+                <span className="hidden sm:inline">{fullScreenPitch ? 'Tam Ekran Çık' : 'Tam Ekran'}</span>
+                <span className="sm:hidden">{fullScreenPitch ? 'Çık' : 'Tam Ekran'}</span>
+              </button>
+              {/* Mobile Roster Button - only shows on mobile */}
+              <button
+                onClick={() => setShowRoster(true)}
+                className="lg:hidden flex items-center gap-1.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white backdrop-blur-sm text-xs px-3 py-2 rounded-lg font-medium transition-all"
+              >
+                <List className="w-3 h-3" />
+                Kadrolar
+              </button>
+              {isAdmin && activePlayers.size > 0 && (
+                <Button
+                  onClick={() => {
+                    clearPitch();
+                    setMatchType('5v5');
+                    setTeamAFormation(null);
+                    setTeamBFormation(null);
+                    setTeamAFormationIndex(0);
+                    setTeamBFormationIndex(0);
+                  }}
+                  variant="danger"
+                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 border border-red-400/50 text-white backdrop-blur-sm text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl"
                 >
-                  ✕
-                </button>
+                  Sahayı Temizle
+                </Button>
+              )}
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="hidden sm:inline text-xs sm:text-sm text-slate-700 dark:text-white/80 px-2">
+                    {currentPlayer?.name}
+                    {currentPlayer?.isAdmin && ' (Admin)'}
+                  </span>
+                  <button
+                    onClick={async () => {
+                      await authLogout();
+                      window.location.href = '/login';
+                    }}
+                    className="px-3 sm:px-4 py-2 sm:py-2.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 text-xs sm:text-sm"
+                  >
+                    <LogOut className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Çıkış</span>
+                  </button>
+                </div>
+              ) : (
+                <a
+                  href="/login"
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 bg-white/60 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
+                >
+                  <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Giriş</span>
+                </a>
+              )}
+              {isAdmin && (
+                <a
+                  href="/admin"
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 dark:from-purple-400 dark:to-pink-400 dark:hover:from-purple-500 dark:hover:to-pink-500 border border-purple-400/50 text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
+                >
+                  <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Yönetim</span>
+                </a>
+              )}
+              {isAuthenticated && (
+                <a
+                  href="/stats"
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 dark:from-cyan-400 dark:to-blue-400 dark:hover:from-cyan-500 dark:hover:to-blue-500 border border-cyan-400/50 text-white rounded-lg sm:rounded-xl font-medium transition-all backdrop-blur-sm flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
+                >
+                  <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">İstatistik</span>
+                </a>
+              )}
+            </div>
+
+            {/* Formation Info - Modern glass cards */}
+            {(teamAFormation || teamBFormation) && (
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 px-2">
+                {teamAFormation && (
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-md border border-blue-400/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
+                    <p className="text-white font-bold text-xs sm:text-sm">{teamAFormation.name}</p>
+                    <p className="text-blue-200 text-[10px] sm:text-xs mt-0.5">{teamAFormation.description}</p>
+                  </div>
+                )}
+                {teamBFormation && (
+                  <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 backdrop-blur-md border border-red-400/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
+                    <p className="text-white font-bold text-xs sm:text-sm">{teamBFormation.name}</p>
+                    <p className="text-red-200 text-[10px] sm:text-xs mt-0.5">{teamBFormation.description}</p>
+                  </div>
+                )}
               </div>
-              <div className="p-4">
-                <TeamRosterSidebar
+            )}
+
+            {/* Quick Actions */}
+            {playerPool.length === 0 && (
+              <GlassCard className="p-6 bg-blue-500/20 backdrop-blur-md border border-blue-400/40 text-center rounded-xl">
+                <p className="text-blue-100 text-lg mb-3 font-medium">👥 Başlamak için oyuncu ekleyin</p>
+                <a
+                  href="/admin"
+                  className="inline-block px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg"
+                >
+                  Admin Sayfasına Git
+                </a>
+              </GlassCard>
+            )}
+
+            {/* Football Pitch with Sidebar */}
+            <div className="relative flex justify-center">
+              <div className="w-full px-2 sm:px-4" ref={pitchRef}>
+                <FootballPitch
+                  matchType={matchType}
                   activePlayers={activePlayers}
-                  totalSlots={config.totalSlots}
-                  isModal={true}
+                  playerPositions={playerPositions}
+                  onSlotClick={handleSlotClick}
+                  onPlayerMove={isAuthenticated ? handlePlayerMove : undefined}
+                  onPlayerPositionChange={isAuthenticated ? handlePlayerPositionChange : undefined}
+                  teamAFormation={teamAFormation}
+                  teamBFormation={teamBFormation}
+                  orientation={pitchOrientation}
                 />
               </div>
+              {/* Sidebar - hidden on mobile, fixed on larger screens */}
+              <TeamRosterSidebar
+                activePlayers={activePlayers}
+                totalSlots={config.totalSlots}
+                isOpen={showDesktopSidebar}
+                onToggle={() => setShowDesktopSidebar(!showDesktopSidebar)}
+              />
             </div>
-          </div>
-        )}
+
+            {/* Bench Section */}
+            <BenchSection
+              matchType={matchType}
+              activePlayers={activePlayers}
+              onSlotClick={handleSlotClick}
+            />
+
+            {/* Player Selector Modal */}
+            <PlayerSelectorModal
+              isOpen={showModal}
+              onClose={() => {
+                setShowModal(false);
+                setSelectedSlotId(null);
+              }}
+              availablePlayers={availablePlayers}
+              onSelectPlayer={handleSelectPlayer}
+            />
+
+            {/* Formation Diagram Modal */}
+            {showFormation && (
+              <FormationDiagram
+                matchType={matchType}
+                onClose={handleFormationChange}
+                initialTeamAIndex={teamAFormationIndex}
+                initialTeamBIndex={teamBFormationIndex}
+                currentTeamAFormation={teamAFormation}
+                currentTeamBFormation={teamBFormation}
+              />
+            )}
+
+            {/* Mobile Roster Modal */}
+            {showRoster && (
+              <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-end justify-center lg:hidden">
+                <div className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 backdrop-blur-xl border-t border-slate-300 dark:border-slate-700 rounded-t-2xl shadow-2xl w-full max-h-[80vh] overflow-y-auto">
+                  <div className="sticky top-0 z-10 p-4 bg-slate-50/95 dark:bg-slate-900/95 border-b border-slate-300 dark:border-slate-700 backdrop-blur-xl flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Users className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
+                      Takım Kadroları
+                    </h3>
+                    <button
+                      onClick={() => setShowRoster(false)}
+                      className="p-2 text-slate-600 dark:text-white/80 hover:bg-slate-200 dark:hover:bg-slate-700/50 rounded-full transition-colors"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <TeamRosterSidebar
+                      activePlayers={activePlayers}
+                      totalSlots={config.totalSlots}
+                      isModal={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}
