@@ -1,9 +1,8 @@
 {
-  "/api/players/route": "app/api/players/route.js",
   "/api/pitch-state/route": "app/api/pitch-state/route.js",
+  "/api/players/route": "app/api/players/route.js",
+  "/api/settings/route": "app/api/settings/route.js",
   "/api/auth/login/route": "app/api/auth/login/route.js",
-  "/icon.svg/route": "app/icon.svg/route.js",
-  "/api/pitch-state/stream/route": "app/api/pitch-state/stream/route.js",
   "/page": "app/page.js",
-  "/login/page": "app/login/page.js"
+  "/admin/page": "app/admin/page.js"
 }
